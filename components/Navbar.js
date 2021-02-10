@@ -56,11 +56,19 @@ const Navbar = () => {
                 </Box>
                 <Box
                     position='relative'
-                    opacity={router.pathname !== '/list' ? 0.4 : 1}>
-                    <Link href='/list'>
-                        <a>List</a>
+                    opacity={router.pathname !== '/user' ? 0.4 : 1}>
+                    <Link href='/user'>
+                        <a>Profile</a>
                     </Link>
                 </Box>
+                <Box
+                    position='relative'
+                    opacity={router.pathname !== '/search_parks' ? 0.4 : 1}>
+                    <Link href='/search_parks'>
+                        <a>Search</a>
+                    </Link>
+                </Box>
+
             </Stack>
             <Box>
                 <IconButton

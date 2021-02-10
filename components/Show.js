@@ -1,4 +1,4 @@
-const show_parks = () => {
+const Show = () => {
     return (
         <>
         Show Parks Page
@@ -6,4 +6,4 @@ const show_parks = () => {
     )
 }
 
-export default show_parks
+export default Show

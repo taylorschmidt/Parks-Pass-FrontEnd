@@ -4,7 +4,7 @@ import axios from 'axios'
 //FormControl allows you to control what is required and what is disabled when filling out a form.
 //InputGroups puts icons and input fields together
 import {Stack, Input, FormControl, InputLeftElement, Icon, InputGroup, Button, Divider, FormHelperText} from "@chakra-ui/react"
-
+import {InfoIcon, EmailIcon, LockIcon} from '@chakra-ui/icons'
 const SignUpForm = () => {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
@@ -45,7 +45,7 @@ const SignUpForm = () => {
             <Stack spacing={4}>
                 <FormControl isRequired>
                     <InputGroup>
-                    <InputLeftElement children={<Icon name="info"/>} />
+                    <InputLeftElement children={<InfoIcon/>} />
                     <Input 
                         type="text"
                         placeholder="Username"
@@ -57,7 +57,7 @@ const SignUpForm = () => {
                 </FormControl>
                 <FormControl isRequired>
                     <InputGroup>
-                    <InputLeftElement children={<Icon name="email"/>} />
+                    <InputLeftElement children={<EmailIcon/>} />
                     <Input 
                         type="text"
                         placeholder="Email"
@@ -70,7 +70,7 @@ const SignUpForm = () => {
             
                 <FormControl isRequired>
                     <InputGroup>
-                    <InputLeftElement children={<Icon name="lock"/>} />
+                    <InputLeftElement children={<LockIcon/>} />
                     <Input 
                         type="password"
                         placeholder="Password"
@@ -94,7 +94,7 @@ const SignUpForm = () => {
                 <FormHelperText textAlign="center">
                     We will never share your email!
                     <br/>
-                    🤍
+                    🌲
                 </FormHelperText>
             </Stack>
         </form>

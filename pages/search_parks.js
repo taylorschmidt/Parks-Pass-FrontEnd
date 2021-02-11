@@ -16,11 +16,13 @@ import { SearchIcon } from "@chakra-ui/icons";
 
 const search_parks = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchResult, setSearchResult] = useState([])
 
   const onChangeForm = (e) => {
     const searchText = e.target.value;
     setSearchTerm(searchText);
   };
+
 
   const getParkData = () => {
     axios
@@ -28,12 +30,14 @@ const search_parks = () => {
         `https://developer.nps.gov/api/v1/parks?q=${searchTerm}&api_key=W9tvHVJFdf5z1OJ2J1rpSj8Ngc0Z7BfqhjfAVFgz`
       )
       .then((data) => {
-        console.log(data.data);
+        console.log(data.data.data);
+        setSearchResult(data.data.data)
       })
       .catch((err) => {
         console.log("Error connecting to NP API:", err);
       });
   };
+  
   return (
     <>
       
@@ -45,7 +49,7 @@ const search_parks = () => {
             </Button>
           </FormControl>
        
-          <Show />
+          <Show searchResult={searchResult}/>
        
     </>
   );

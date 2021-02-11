@@ -35,7 +35,7 @@ const Navbar = () => {
                 isInline>
                 <Box
                     position='relative'
-                    opacity={router.pathname !== '/index' ? 0.4 : 1}>
+                    opacity={router.pathname !== '/index' ? .4 : 1}>
                     <Link href='/'>
                         <a>Home</a>
                     </Link>
@@ -56,8 +56,8 @@ const Navbar = () => {
                 </Box>
                 <Box
                     position='relative'
-                    opacity={router.pathname !== '/user' ? 0.4 : 1}>
-                    <Link href='/user'>
+                    opacity={router.pathname !== '/profile' ? 0.4 : 1}>
+                    <Link href='/profile'>
                         <a>Profile</a>
                     </Link>
                 </Box>

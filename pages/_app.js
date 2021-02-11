@@ -1,5 +1,7 @@
 import { ChakraProvider, Flex, Spacer } from "@chakra-ui/react"
 import Navbar from '../components/Navbar';
+import search_parks from '../pages/search_parks'
+import {Switch, Route} from 'react-router-dom'
 
 function MyApp({ Component, pageProps }) {
 	return (

@@ -3,6 +3,12 @@ import Link from 'next/link'
 import { useRouter } from 'next/router';
 
 const Show = ({searchResult}) => {
+    const router = useRouter()
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        router.push(href)
+      }
 
     const display = () => {
         return searchResult.map((data, index)=> {
@@ -14,9 +20,12 @@ const Show = ({searchResult}) => {
                     {data.fullName}<br></br>
                     {data.parkCode}<br></br>
                     {/* button with link to show page that sends data of park code as state */}
-                    <Button>
-                    <Link href={`/park_info?code=${data.parkCode}`}>Park Information</Link>
-                    </Button>
+                    <span onClick={() => {
+                        router.push({
+                            pathname: `/park_info`,
+                            query: { code: data.parkCode },
+                    })
+                    }}>Learn More</span>
                 </Box>
                 </Box>
             )

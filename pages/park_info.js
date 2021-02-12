@@ -1,5 +1,8 @@
 import {useState, useEffect} from 'react'
 import {Component} from 'react'
+import { withRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import axios from 'axios' 
 
 // class park_info extends Component {
 
@@ -7,27 +10,38 @@ import {Component} from 'react'
 //     console.log(query)
 //     return {}
 //   }
-
-//   constructor(props) {
-//     super(props);
-//     // Don't call this.setState() here!
-//     this.state = { code:  };
-//     this.handleClick = this.handleClick.bind(this);
-//   }
-
+ 
 
 //   render() {
 //     return (
-//     <h2>Park Page for code:</h2>
+//     <h2>Park Page for code: </h2>
 //     )
 //   }
 // }
 
-const park_info = ({query}) => {
-  console.log(query)
+const park_info = () => {
+  const { query } = useRouter()
+  const getParkData = () => {
+        axios
+          .get(
+            `https://developer.nps.gov/api/v1/parks?parkCode=${query.code}&&api_key=W9tvHVJFdf5z1OJ2J1rpSj8Ngc0Z7BfqhjfAVFgz`
+          )
+          .then((data) => {
+            console.log('from NPAPI', data.data.data);
+          })
+          .catch((err) => {
+            console.log("Error connecting to NP API:", err);
+          });
+      };
+
+      useEffect(() => {
+        getParkData()
+      });
+
+
   return (
     <>
-    Park Page for Code: 
+    Park Page for Code: {query.code}
     </>
   )
 }
@@ -68,4 +82,4 @@ const park_info = ({query}) => {
 //     )
 // }
 
-export default park_info
+export default withRouter(park_info)

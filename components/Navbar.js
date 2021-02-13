@@ -42,16 +42,9 @@ const Navbar = () => {
                 </Box>
                 <Box
                     position='relative'
-                    opacity={router.pathname !== '/show_parks' ? 0.4 : 1}>
-                    <Link href='/show_parks'>
-                        <a>Show Parks</a>
-                    </Link>
-                </Box>
-                <Box
-                    position='relative'
                     opacity={router.pathname !== '/form' ? 0.4 : 1}>
                     <Link href='/form'>
-                        <a>Form</a>
+                        <a>Login/Signup</a>
                     </Link>
                 </Box>
                 <Box

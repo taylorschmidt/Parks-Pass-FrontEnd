@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
 	return (
 			<ChakraProvider>
 				<Navbar />
-				<Flex justify='center' align='center' w='100%' h='93vh'>
+				<Flex>
 						<Component {...pageProps} />
 				</Flex>
 			</ChakraProvider>

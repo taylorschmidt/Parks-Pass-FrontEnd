@@ -57,6 +57,36 @@ import {
             >
               Learn More
             </Button>
+            <Button onClick={()=>{
+                        axios
+                          .post(
+                            "http://localhost:8000" + `/api/v1/park/`,
+                            { park_code: data.parkCode },
+                            { withCredentials: true }
+                          )
+                          .then((data) => {
+                            let visitedId = data.data.data.id;
+                            console.log('visitedID', visitedId)
+                            //another axios call to post person_park connection
+                            axios
+                              .post(
+                                "http://localhost:8000" + `/api/v1/person_park/visited/delete`, 
+                                { person_id: user.id, visited_park_id: visitedId },
+                                {withCredentials: true}
+                                
+                              )
+                              .then((data) => {
+                                console.log("person park data was deleted:", data.data.data);
+                              })
+                              .catch((err) => {
+                                console.log("error with person park", err);
+                              });
+                      })
+                      .catch((err) => {
+                        console.log("error finding user", err);
+                      });
+                      location.reload()
+            }}>Delete from Passport</Button>
           </Box>
         </Box>
         )

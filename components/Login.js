@@ -11,39 +11,9 @@ import {
   FormHelperText,
 } from "@chakra-ui/react";
 import { InfoIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
-import Cookies from "universal-cookie";
+
 
 const LoginForm = () => {
-  const [user, setUser] = useState();
-
-  // const getUser = () => {
-  //     axios.get(
-  //         'http://localhost:8000' + `/api/v1/user/`
-  //     ).then((data)=>{
-  //         console.log(data.data.data)
-  //     }).catch((err)=>{
-  //         console.log("error registering user", err)
-  //     })
-  // }
-
-  const getUser = () => {
-    // const loggedInUser = JSON.parse(localStorage.getItem('users'))
-    // setUser(loggedInUser)
-    // console.log(loggedInUser.id)
-    // console.log('state user', user.username)
-    // const cookies = new Cookies();
-    // cookies.set('myCat', 'Pacman', { path: '/' });
-    // console.log(cookies.get('myCat')); // Pacman
-    axios
-      .get("http://localhost:8000" + `/api/v1/user/`, { withCredentials: true })
-      .then((data) => {
-        console.log(data.data.data);
-      })
-      .catch((err) => {
-        console.log("error registering user", err);
-      });
-  };
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -115,7 +85,6 @@ const LoginForm = () => {
           >
             Log In!
           </Button>
-          <Button onClick={getUser}>Trial - Get User</Button>
           <FormHelperText textAlign="center">
             Happy to see you again!
             <br />

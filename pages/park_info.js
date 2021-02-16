@@ -64,6 +64,46 @@ const park_info = () => {
       });
   };
 
+
+  const deleteFromPassport = () => {
+    // axios call to get user data
+    axios
+      .get("http://localhost:8000" + `/api/v1/user/`, {withCredentials: true})
+      .then((data) => {
+        let userId = data.data.data[0].id;
+        console.log('userid', userId)
+        //another axios call to find or create park
+        axios
+          .post(
+            "http://localhost:8000" + `/api/v1/park/`,
+            { park_code: query.code },
+            { withCredentials: true }
+          )
+          .then((data) => {
+            let visitedId = data.data.data.id;
+            console.log('visitedID', visitedId)
+            //another axios call to post person_park connection
+            axios
+              .post(
+                "http://localhost:8000" + `/api/v1/person_park/visited/delete`, 
+                { person_id: userId, visited_park_id: visitedId },
+                {withCredentials: true}
+                
+              )
+              .then((data) => {
+                console.log("person park data was deleted:", data.data.data);
+              })
+              .catch((err) => {
+                console.log("error with person park", err);
+              });
+          });
+      })
+      .catch((err) => {
+        console.log("error finding user", err);
+      });
+  };
+
+
   useEffect(() => {
     getParkData();
   }, []);
@@ -88,6 +128,7 @@ const park_info = () => {
               Camping Information
             </Button>
             <Button onClick={addToPassport}>Add to Passport</Button>
+            <Button onClick={deleteFromPassport}>Delete from Passport</Button>
           </div>
         </div>
       )}

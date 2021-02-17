@@ -64,30 +64,19 @@ const profile = () => {
     setLoading(false);
   }, 2000);
 
-  const logout = () => {
-    axios
-      .get("http://localhost:8000" + `/api/v1/user/logout`, {withCredentials: true})
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    setTimeout(() => {
-      router.push("/form");
-    }, 500);
-  };
+  
 
   useEffect(() => {
     getUser();
   }, []);
+   
+
 
   return (
     <>
       {loading && <div>Page is loading!</div>}
       {!loading && (
         <div>
-          <Button onClick={logout}>Logout</Button>
           <Passport data={axiosPassport} user={user} />
         </div>
       )}

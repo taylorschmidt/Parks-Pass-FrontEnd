@@ -2,35 +2,20 @@ import { Flex,
 	Stack,
 	useColorMode,
 	IconButton,
-    Box,
-    Button,
+	Box,
 	Image } from "@chakra-ui/react"
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
-const Navbar = () => {
+const NoUserNav = () => {
     const { colorMode, toggleColorMode } = useColorMode();
 	const bgColor = { light: 'gray.300', dark: 'gray.600' };
 	const textColor = { light: 'black', dark: 'gray.100' };
     const router = useRouter();
     const [isUser, setIsUser] = useState(false)
 
-    const logout = () => {
-        axios
-          .get("http://localhost:8000" + `/api/v1/user/logout`, {withCredentials: true})
-          .then((data) => {
-            console.log(data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-          window.location.replace('/form')
-        // setTimeout(() => {
-        //   router.push("form");
-        // }, 500);
-    }
 
 
 
@@ -72,21 +57,10 @@ const Navbar = () => {
                 </Box>
                 <Box
                     position='relative'
-                    opacity={router.pathname !== '/profile' ? 0.4 : 1}>
-                    <Link href='/profile'>
-                        <a>Profile</a>
-                    </Link>
-                </Box>
-                <Box
-                    position='relative'
                     opacity={router.pathname !== '/search_parks' ? 0.4 : 1}>
                     <Link href='/search_parks'>
                         <a>Search</a>
                     </Link>
-                </Box>
-                <Box
-                    position='relative'>
-                    <Button onClick={logout}>Logout</Button>
                 </Box>
 
             </Stack>
@@ -103,4 +77,4 @@ const Navbar = () => {
 );
 }
 
-export default Navbar
+export default NoUserNav

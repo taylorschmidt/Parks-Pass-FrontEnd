@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 import {
   Stack,
   Input,
@@ -13,9 +14,12 @@ import {
 import { InfoIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
 
 
+
 const LoginForm = () => {
+ const router = useRouter()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [unknownUser, setUnknownUser] = useState(false)
 
   const onChangeEmail = (e) => {
     const email = e.target.value;
@@ -39,13 +43,19 @@ const LoginForm = () => {
         { withCredentials: true }
       )
       .then((data) => {
-        let userData = data.data.data;
-        console.log('Data from backend', userData);
+        if (data.data.status.code === 401) {
+            setUnknownUser(true)
+        }
+        else if (data.data.status.code === 200) {
+            window.location.replace('/profile')
+        }
       })
       .catch((err) => {
         console.log("error logging in user", err);
       });
   };
+
+
   return (
     <div>
       <form action="submit">
@@ -90,9 +100,14 @@ const LoginForm = () => {
             <br />
             🌲
           </FormHelperText>
+          {unknownUser && <FormHelperText textAlign="center">
+          Username or password is incorrect! 😢
+          </FormHelperText>}
         </Stack>
       </form>
+      
     </div>
+
   );
 };
 

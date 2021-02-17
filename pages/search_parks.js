@@ -19,6 +19,7 @@ import Show from "../components/Show";
 import Preview from "../components/Preview"
 import { SearchIcon } from "@chakra-ui/icons";
 
+
 const search_parks = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([])
@@ -73,7 +74,7 @@ const search_parks = () => {
         <Center h="100%" w="75%">
           <FormControl id="park-search">
             <HStack>
-            <Input type="text" placeHolder="search for a park" value={searchTerm} onChange={onChangeForm} w="75%" />
+            <Input type="text" placeHolder="search for a park" value={searchTerm} onChange={onChangeForm} w="75%"/>
             <Button type="submit" onClick={getParkData}>
             <SearchIcon />
             </Button>

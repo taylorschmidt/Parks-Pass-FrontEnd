@@ -65,13 +65,6 @@ const Navbar = () => {
                 </Box>
                 <Box
                     position='relative'
-                    opacity={router.pathname !== '/form' ? 0.4 : 1}>
-                    <Link href='/form'>
-                        <a>Login/Signup</a>
-                    </Link>
-                </Box>
-                <Box
-                    position='relative'
                     opacity={router.pathname !== '/profile' ? 0.4 : 1}>
                     <Link href='/profile'>
                         <a>Profile</a>
@@ -85,8 +78,11 @@ const Navbar = () => {
                     </Link>
                 </Box>
                 <Box
-                    position='relative'>
-                    <Button onClick={logout}>Logout</Button>
+                    position='relative'
+                    opacity="0.4"
+                    cursor= "pointer"
+                    onClick={logout}>
+                    Logout
                 </Box>
 
             </Stack>

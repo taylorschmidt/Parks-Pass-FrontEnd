@@ -11,7 +11,7 @@ const Show = ({ searchResult }) => {
         <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
           {data.images[0] && (
             <div>
-                <Link onClick={() => {
+                <Button onClick={() => {
                 router.push({
                   pathname: `/park_info`,
                   query: { code: data.parkCode },
@@ -24,13 +24,13 @@ const Show = ({ searchResult }) => {
                 src={data.images[0].url}
                 alt="Park Photo"
               />
-              </Link>
+              </Button>
             </div>
             
           )}
           {!data.images[0] && (
             <div>
-            <Link onClick={() => {
+            <Button onClick={() => {
                 router.push({
                   pathname: `/park_info`,
                   query: { code: data.parkCode },
@@ -42,7 +42,7 @@ const Show = ({ searchResult }) => {
                 src="https://i.imgur.com/Eq3Ahwd.jpg"
                 alt="Park Photo"
               />
-              </Link>
+              </Button>
             </div>
           )}
           <Box>

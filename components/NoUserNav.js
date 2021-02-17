@@ -50,18 +50,19 @@ const NoUserNav = () => {
                 </Box>
                 <Box
                     position='relative'
-                    opacity={router.pathname !== '/form' ? 0.4 : 1}>
-                    <Link href='/form'>
-                        <a>Login/Signup</a>
+                    opacity={router.pathname !== '/search_parks' ? 0.4 : 1}>
+                    <Link href='/search_parks'>
+                        <a>Browse Parks</a>
                     </Link>
                 </Box>
                 <Box
                     position='relative'
-                    opacity={router.pathname !== '/search_parks' ? 0.4 : 1}>
-                    <Link href='/search_parks'>
-                        <a>Search</a>
+                    opacity={router.pathname !== '/form' ? 0.4 : 1}>
+                    <Link href='/form'>
+                        <a>Join ParksPass</a>
                     </Link>
                 </Box>
+                
 
             </Stack>
             <Box>

@@ -16,9 +16,16 @@ import {
   
   const Passport = ({ data, user }) => {
     const router = useRouter();
-  
+   
+    
+    let parkCount = 0
+    let allParkCount =0
     const display = () => {
       return data.map((data, index) => {
+          allParkCount += 1
+          if (data.designation === "National Park") {
+              parkCount += 1
+          }
         return (
           <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
             {data.images[0] && (
@@ -101,9 +108,10 @@ import {
       <>
         <div>Passport Page</div>
         <div>{display()}</div>
+        <div>National Parks Visited: {parkCount}/63</div>
+        <div>{allParkCount} NPS Sites Visited</div>
       </>
     );
   };
   
   export default Passport;
-  

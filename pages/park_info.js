@@ -1,13 +1,30 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { Button } from "@chakra-ui/react";
+import {
+  Button,
+  Text,
+  Flex,
+  Box,
+  Spacer,
+  Container,
+  VStack,
+  HStack,
+  Center,
+  Image,
+  Grid,
+  GridItem,
+  Link,
+  ExternalLinkIcon,
+} from "@chakra-ui/react";
+import ImageSlider from "../components/ImageSlider"
 
 const park_info = () => {
   const { query } = useRouter();
   const router = useRouter();
   const [parkData, setParkData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [images, setImages] = useState([])
 
   const getParkData = () => {
     axios
@@ -19,6 +36,7 @@ const park_info = () => {
         console.log("from NPAPI", parkDataAPI);
         setTimeout(() => {
           parkData.push(parkDataAPI);
+          loopParkData()
           setLoading(true);
           console.log(parkData);
         }, 2000);
@@ -27,6 +45,15 @@ const park_info = () => {
         console.log("Error connecting to NP API:", err);
       });
   };
+
+  const loopParkData = () => {
+    let imagesArray = parkData[0][0].images
+    console.log(imagesArray)
+    imagesArray.forEach((image)=>{
+        images.push(image.url)
+    })
+  }
+
 
   const addToPassport = () => {
     console.log(query.code);
@@ -63,47 +90,7 @@ const park_info = () => {
         console.log("error finding user", err);
       });
   };
-
-
-  const deleteFromPassport = () => {
-    // axios call to get user data
-    axios
-      .get("http://localhost:8000" + `/api/v1/user/`, {withCredentials: true})
-      .then((data) => {
-        let userId = data.data.data[0].id;
-        console.log('userid', userId)
-        //another axios call to find or create park
-        axios
-          .post(
-            "http://localhost:8000" + `/api/v1/park/`,
-            { park_code: query.code },
-            { withCredentials: true }
-          )
-          .then((data) => {
-            let visitedId = data.data.data.id;
-            console.log('visitedID', visitedId)
-            //another axios call to post person_park connection
-            axios
-              .post(
-                "http://localhost:8000" + `/api/v1/person_park/visited/delete`, 
-                { person_id: userId, visited_park_id: visitedId },
-                {withCredentials: true}
-                
-              )
-              .then((data) => {
-                console.log("person park data was deleted:", data.data.data);
-              })
-              .catch((err) => {
-                console.log("error with person park", err);
-              });
-          });
-      })
-      .catch((err) => {
-        console.log("error finding user", err);
-      });
-  };
-
-
+  
   useEffect(() => {
     getParkData();
   }, []);
@@ -112,28 +99,120 @@ const park_info = () => {
     <>
       {loading && (
         <div>
-          <div>
-            Park Page for Code: {query.code}
-            Park page for code: {parkData[0][0].fullName}
-          </div>
-          <div>
-            <Button
-              onClick={() => {
-                router.push({
-                  pathname: `/campground_info`,
-                  query: { code: parkData[0][0].parkCode },
-                });
-              }}
-            >
-              Camping Information
-            </Button>
-            <Button onClick={addToPassport}>Add to Passport</Button>
-            <Button onClick={deleteFromPassport}>Delete from Passport</Button>
-          </div>
+          <Box w="100%">
+            <Box w="100%" mt={3}>
+              <Center>
+                <VStack>
+                  <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/US-NationalParkService-Logo.svg/1200px-US-NationalParkService-Logo.svg.png" h="10%" w="10%"></Image>
+                  <Text fontSize="4xl">{parkData[0][0].fullName}</Text>
+                  <HStack>
+                    <Button onClick={addToPassport}>Stamp Passport</Button>
+                    <Button
+                      onClick={() => {
+                        router.push({
+                          pathname: `/campground_info`,
+                          query: { code: parkData[0][0].parkCode },
+                        });
+                      }}
+                    >
+                      Campground Info
+                    </Button>
+                  </HStack>
+                </VStack>
+              </Center>
+            </Box>
+
+            <Box borderWidth="1px">
+              <Flex>
+                <Box w="40%">
+                  {/* <Center>
+                    <Text fontSize="2xl">Park Information:</Text>
+                  </Center> */}
+                  <Grid
+                    templateRows="repeat(5, 1fr)"
+                    templateColumns="1fr 2fr"
+                    p={10}
+                    // gap={2}
+                  >
+                    <Box w="100%" h="5">
+                      Website:
+                    </Box>
+                    <Box w="100%" h="5">
+                      <a href={parkData[0][0].url}>Link</a>
+                    </Box>
+                    <Box w="100%" h="20">
+                      Address:
+                    </Box>
+                    <Box w="100%" h="20">
+                      <Box>{parkData[0][0].addresses[0].line1}</Box>
+                      <Box>{parkData[0][0].addresses[0].line2}</Box>
+                      <Box>
+                        {parkData[0][0].addresses[0].city},{" "}
+                        {parkData[0][0].addresses[0].stateCode}{" "}
+                        {parkData[0][0].addresses[0].postalCode}
+                      </Box>
+                    </Box>
+                    <Box w="100%" h="10">
+                      Entrance Fee
+                    </Box>
+                    <Box w="100%" h="10">
+                      {!parkData[0][0].entranceFees.cost && <div>None</div>}
+                      {parkData[0][0].entranceFees.cost && (
+                        <div>{parkData[0][0].entranceFees.cost}</div>
+                      )}
+                    </Box>
+                    <Box w="100%" h="10">
+                      Designation
+                    </Box>
+                    <Box w="100%" h="10">
+                      {parkData[0][0].designation}
+                    </Box>
+                    <Box w="100%" h="20">
+                      Hours
+                    </Box>
+                    <Box w="100%" h="20">
+                      Monday:{" "}
+                      {parkData[0][0].operatingHours[0].standardHours.monday}
+                      <br></br>
+                      Tuesday:{" "}
+                      {parkData[0][0].operatingHours[0].standardHours.tuesday}
+                      <br></br>
+                      Wednesday:{" "}
+                      {parkData[0][0].operatingHours[0].standardHours.wednesday}
+                      <br></br>
+                      Thursday:{" "}
+                      {parkData[0][0].operatingHours[0].standardHours.thursday}
+                      <br></br>
+                      Friday:{" "}
+                      {parkData[0][0].operatingHours[0].standardHours.friday}
+                      <br></br>
+                      Saturday:{" "}
+                      {parkData[0][0].operatingHours[0].standardHours.saturday}
+                      <br></br>
+                      Sunday:{" "}
+                      {parkData[0][0].operatingHours[0].standardHours.sunday}
+                    </Box>
+                  </Grid>
+                </Box>
+
+                <Box w="60%" p={3} m={3}>
+                  <Flex alignItems="center">
+                    <VStack>
+                      <Box w="100%">
+                      <ImageSlider images={images}/>
+                      </Box>
+                      <Box>
+                        <Text>{parkData[0][0].description}</Text>
+                      </Box>
+                    </VStack>
+                  </Flex>
+                </Box>
+              </Flex>
+            </Box>
+          </Box>
         </div>
       )}
     </>
   );
 };
-
-export default park_info;
+export default park_info

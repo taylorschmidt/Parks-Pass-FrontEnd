@@ -71,13 +71,13 @@ const search_parks = () => {
   return (
     <>
     <VStack>
-        <Center h="100%" w="75%">
-          <FormControl id="park-search">
-            <HStack>
-            <Input type="text" placeHolder="search for a park" value={searchTerm} onChange={onChangeForm} w="75%"/>
-            <Button type="submit" onClick={getParkData}>
-            <SearchIcon />
+        <Center w="50%">
+        <Button type="submit" onClick={getParkData} p={3}>
+           Search Parks
             </Button>
+          <FormControl id="park-search" p={3}>
+            <HStack>
+            <Input w="110%" type="text" placeHolder="🔎" value={searchTerm} onChange={onChangeForm} w="100%"/>
             </HStack>
           </FormControl>
           </Center>

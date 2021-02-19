@@ -19,6 +19,7 @@ import { useState, useEffect } from "react";
 const Passport = ({ data, user }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const [natParks, setNatParks] = useState([])
 
   let parkCount = 0;
   let allParkCount = 0;
@@ -85,7 +86,11 @@ const Passport = ({ data, user }) => {
                 </Text>
               </Box>
               <Box>
-                {data.addresses.length > 0 && (<div>{data.addresses[0].city}, {data.addresses[0].stateCode}</div>)}
+                {data.addresses.length > 0 && (
+                  <div>
+                    {data.addresses[0].city}, {data.addresses[0].stateCode}
+                  </div>
+                )}
               </Box>
               <Button
                 onClick={() => {
@@ -134,20 +139,15 @@ const Passport = ({ data, user }) => {
 
   return (
     <>
-    <VStack>
-      <Box borderWidth="1px" borderRadius="lg" padding="10" margin="10">
-        <Box d="flex" flexWrap="wrap">
-          {display()}
+      <VStack>
+        <Box borderWidth="1px" borderRadius="lg" padding="10" margin="10">
+          <Box d="flex" flexWrap="wrap">
+            {display()}
+          </Box>
         </Box>
-      </Box>
-          <Text>National Parks Visited: {parkCount}/63</Text>
-     
-          <Text>Total NPS Sites Visited: {allParkCount} </Text>
-          </VStack>
-       
-        
-      
-      
+        <Text>National Parks Visited: {parkCount}/63</Text>
+        <Text>Total NPS Sites Visited: {allParkCount} </Text>
+      </VStack>
     </>
   );
 };

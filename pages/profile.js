@@ -1,12 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Passport from "../components/Passport";
-import { Button, Flex, Box, useColorMode, Text, VStack } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Box,
+  useColorMode,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import ChangeUsername from "../components/ChangeUsername";
+import ParkCount from "../components/ParkCount";
 
 const profile = () => {
-  const { colorMode } = useColorMode()
+  const { colorMode } = useColorMode();
   const [email, setEmail] = useState("");
   const [user, setUser] = useState("");
   const [username, setUsername] = useState("");
@@ -26,7 +34,7 @@ const profile = () => {
         let myUsername = data.data.data[0].username;
         setUsername(myUsername);
         setUser(userId);
-        setEmail(myEmail)
+        setEmail(myEmail);
         axios
           .post("http://localhost:8000" + `/api/v1/person_park/visited`, {
             email: myEmail,
@@ -101,31 +109,28 @@ const profile = () => {
       {!loading && (
         <div>
           <VStack>
-          <Box>
-          <Text fontSize="3xl">{username}'s Passport</Text>
-          </Box>
-          <Flex flexWrap="wrap">
-            <Passport data={axiosPassport} user={user} />
-          </Flex>
-          <Box>
-            <VStack>
-          <Text>My Email: {email}</Text>
-          <Text>My Username: {username}</Text>
-          <Button
-            onClick={ChangeUsernameFun}
-          >
-            Edit Username
-          </Button>
-          </VStack>
-          </Box>
-          {changeRequest && (
-            <div>
-              <Box w="350px" bg={colorMode === "light" ? "gray.200" : "gray.600" } p={3} boxShadow="sm" rounded="lg">
-              
-              <ChangeUsername email={email} />
-              </Box>
-            </div>
-          )}
+            <Box>
+              <Text fontSize="3xl">{username}'s Passport</Text>
+            </Box>
+            <ParkCount data={axiosPassport} />
+            <Button onClick={ChangeUsernameFun}>Edit Username</Button>
+            {changeRequest && (
+              <div>
+                <Box
+                  w="350px"
+                  bg={colorMode === "light" ? "gray.200" : "gray.600"}
+                  p={3}
+                  boxShadow="sm"
+                  rounded="lg"
+                >
+                  <ChangeUsername email={email} />
+                </Box>
+              </div>
+            )}
+            <Flex flexWrap="wrap">
+              <Passport data={axiosPassport} user={user} />
+            </Flex>
+            <Box></Box>
           </VStack>
         </div>
       )}

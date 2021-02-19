@@ -31,7 +31,7 @@ const ImageSlider = ({images}) => {
         <>
         {images && (<div>
           
-          <img src={images[index]} alt={index} />
+          <Image src={images[index]} alt={index} h="75%" w="80%"></Image>
           <Button onClick={slideLeft}>{"<"}</Button>
           <Button onClick={slideRight}>{">"}</Button>
         </div>)}

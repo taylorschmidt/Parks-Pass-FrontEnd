@@ -62,14 +62,6 @@ import {
                 <Box>
                   {data.addresses[0].city}, {data.addresses[0].stateCode}
                 </Box>
-                {/* <Center>
-                      <Button onClick={() => {
-                          router.push({
-                              pathname: `/park_info`,
-                              query: { code: data.parkCode },
-                      })
-                      }}>Learn More</Button>
-                      </Center> */}
               </Box>
             </Box>
             <Spacer />

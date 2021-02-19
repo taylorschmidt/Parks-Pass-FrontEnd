@@ -111,7 +111,7 @@ const park_info = () => {
                       onClick={() => {
                         router.push({
                           pathname: `/campground_info`,
-                          query: { code: parkData[0][0].parkCode },
+                          query: { code: parkData[0][0].parkCode, name: parkData[0][0].fullName },
                         });
                       }}
                     >
@@ -122,7 +122,7 @@ const park_info = () => {
               </Center>
             </Box>
 
-            <Box borderWidth="1px">
+            <Box borderWidth="1px" mt={3}>
               <Flex>
                 <Box w="40%">
                   {/* <Center>
@@ -138,7 +138,12 @@ const park_info = () => {
                       Website:
                     </Box>
                     <Box w="100%" h="5">
-                      <a href={parkData[0][0].url}>Link</a>
+                      <Text
+                        onClick={()=>{
+                          window.open(parkData[0][0].url, '_blank')
+                        }}
+                      >Click Here</Text>
+                      {/* <a href={parkData[0][0].url}>Link</a> */}
                     </Box>
                     <Box w="100%" h="20">
                       Address:

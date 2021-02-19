@@ -93,9 +93,9 @@ const search_parks = () => {
        )}
         {searchedPark && (
             <div>
-                <Flex flexWrap="wrap">
+                
                 <Show searchResult={searchResult}/>
-                </Flex>
+                
             </div>    
         )}
         </VStack>

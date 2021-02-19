@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Passport from "../components/Passport";
-import { Button } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 const profile = () => {
   const [email, setEmail] = useState("");
   const [user, setUser] = useState("");
+  const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
   const [passport, setPassport] = useState([]);
   const [axiosPassport, setAxiosPassport] = useState([]);
@@ -19,6 +20,8 @@ const profile = () => {
         console.log("user data", data.data.data[0].email);
         let myEmail = data.data.data[0].email;
         let userId = data.data.data[0].id;
+        let myUsername = data.data.data[0].username
+        setUsername(myUsername)
         setUser(userId);
         axios
           .post("http://localhost:8000" + `/api/v1/person_park/visited`, {
@@ -87,8 +90,10 @@ const profile = () => {
       {loading && <div>Page is loading!</div>}
       {!loading && (
         <div>
-          <Button onClick={logout}>Logout</Button>
+          {username}'s Passport
+          <Flex flexWrap="wrap">
           <Passport data={axiosPassport} user={user} />
+          </Flex>
         </div>
       )}
     </>

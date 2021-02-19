@@ -1,66 +1,92 @@
 import {
-    Box,
-    Image,
-    Button,
-    HStack,
-    Container,
-    WrapItem,
-    Wrap,
-    Spacer,
-    Text,
-  } from "@chakra-ui/react";
-  import { useRouter } from "next/router";
-  import axios from "axios";
-  import Link from "next/link";
-  import { useState, useEffect } from "react";
-  
-  const Passport = ({ data, user }) => {
-    const router = useRouter();
-   
-    
-    let parkCount = 0
-    let allParkCount =0
-    const display = () => {
-      return data.map((data, index) => {
-          allParkCount += 1
-          if (data.designation === "National Park") {
-              parkCount += 1
-          }
-        return (
-          <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-            {data.images[0] && (
-              <div>
-                <Image
-                  _hover={{ opacity: ".5" }}
-                  w="375px"
-                  h="210px"
-                  src={data.images[0].url}
-                  alt="Park Photo"
-                />
-              </div>
-            )}
+  Box,
+  Image,
+  Button,
+  HStack,
+  Container,
+  WrapItem,
+  Wrap,
+  Spacer,
+  Text,
+  Center,
+  VStack,
+} from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import axios from "axios";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+
+const Passport = ({ data, user }) => {
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
+
+  let parkCount = 0;
+  let allParkCount = 0;
+
+  const display = () => {
+    return data.map((data, index) => {
+      allParkCount += 1;
+      if (data.designation === "National Park") {
+        parkCount += 1;
+        console.log("park is counting", parkCount);
+      }
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
+      return (
+        <>
+          <Box
+            m="2"
+            maxW="sm"
+            borderWidth="1px"
+            borderRadius="lg"
+            overflow="hidden"
+          >
             {!data.images[0] && (
               <div>
                 <Image
                   w="375px"
                   h="210px"
-                  src="https://i.imgur.com/Eq3Ahwd.jpg"
+                  src="https://i.imgur.com/vX2ymJG.png"
                   alt="Park Photo"
+                  onClick={() => {
+                    router.push({
+                      pathname: `/park_info`,
+                      query: { code: data.parkCode },
+                    });
+                  }}
+                  _hover={{ opacity: ".5" }}
+                  cursor="pointer"
+                />
+              </div>
+            )}
+            {data.images[0] && (
+              <div>
+                <Image
+                  w="375px"
+                  h="210px"
+                  src={data.images[0].url}
+                  alt="Park Photo"
+                  onClick={() => {
+                    router.push({
+                      pathname: `/park_info`,
+                      query: { code: data.parkCode },
+                    });
+                  }}
+                  _hover={{ opacity: ".5" }}
+                  cursor="pointer"
                 />
               </div>
             )}
             <Box>
-              <Text fontSize="2xl">{data.fullName}</Text>
-              <Button
-                onClick={() => {
-                  router.push({
-                    pathname: `/park_info`,
-                    query: { code: data.parkCode },
-                  });
-                }}
-              >
-                Learn More
-              </Button>
+              <Box>
+                <Text fontSize="2xl" noOfLines={1}>
+                  {data.fullName}
+                </Text>
+              </Box>
+              <Box>
+                {data.addresses[0].city}, {data.addresses[0].stateCode}
+              </Box>
               <Button
                 onClick={() => {
                   axios
@@ -96,22 +122,32 @@ import {
                   location.reload();
                 }}
               >
-                Delete from Passport
+                Remove from Passport
               </Button>
             </Box>
           </Box>
-        );
-      });
-    };
-  
-    return (
-      <>
-        <div>Passport Page</div>
-        <div>{display()}</div>
-        <div>National Parks Visited: {parkCount}/63</div>
-        <div>{allParkCount} NPS Sites Visited</div>
-      </>
-    );
+          <Spacer />
+        </>
+      );
+    });
   };
-  
-  export default Passport;
+
+  return (
+    <>
+      <Box borderWidth="1px" borderRadius="lg" padding="10" margin="20">
+        <Box d="flex" flexWrap="wrap">
+          {display()}
+        </Box>
+      </Box>
+          <Text>National Parks Visited: {parkCount}/63</Text>
+     
+          <Text>{allParkCount} NPS Sites Visited</Text>
+       
+        
+      
+      
+    </>
+  );
+};
+
+export default Passport;

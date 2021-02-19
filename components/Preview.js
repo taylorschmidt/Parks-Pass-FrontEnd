@@ -38,7 +38,7 @@ import {
                   <Image
                     w="375px"
                     h="210px"
-                    src="https://i.imgur.com/vX2ymJG.png"
+                    src="https://i.imgur.com/Eq3Ahwd.jpg"
                     alt="Park Photo"
                   />
                 </div>

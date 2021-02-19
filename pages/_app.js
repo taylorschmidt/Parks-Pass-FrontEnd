@@ -1,13 +1,25 @@
-import { ChakraProvider, Flex, Spacer } from "@chakra-ui/react"
+import { ChakraProvider, Flex, Spacer, extendTheme } from "@chakra-ui/react"
 import Navbar from '../components/Navbar';
 import NoUserNav from '../components/NoUserNav'
-import search_parks from '../pages/search_parks'
-import {Switch, Route} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
+import '../public/styles.css'
 
 function MyApp({ Component, pageProps }) {
 	const [isUser, setIsUser] = useState(false)
+
+	const theme = extendTheme({
+		colors: {
+			1: "#8ead99"
+		},
+		components: {
+			Button: {
+				solid: (props) => ({
+					bg: props.colorMode === "dark" ? "green" : "green",
+			})
+		}
+	}
+})
 	
 	const isThereAUser = () => {
 	axios
@@ -27,7 +39,7 @@ function MyApp({ Component, pageProps }) {
 
 
 	return (
-			<ChakraProvider>
+			<ChakraProvider theme={theme}>
 				{isUser && (<Navbar />)}
 				{!isUser && (<NoUserNav />)}
 				<Flex>

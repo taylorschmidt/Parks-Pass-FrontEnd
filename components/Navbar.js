@@ -16,7 +16,7 @@ import {
   const Navbar = () => {
     const { colorMode, toggleColorMode } = useColorMode();
     const bgColor = { light: "gray.300", dark: "gray.600" };
-    const textColor = { light: "black", dark: "gray.100" };
+    const textColor = { light: "black", dark: "white" };
     const router = useRouter();
     const [isUser, setIsUser] = useState(false);
   
@@ -40,7 +40,8 @@ import {
     return (
       <Flex
         w="100vw"
-        bg={bgColor[colorMode]}
+        // bg={bgColor[colorMode]}
+        bg="1"
         color={textColor[colorMode]}
         fontSize={["md", "lg", "xl", "xl"]}
         h="10vh"

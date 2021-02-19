@@ -85,7 +85,7 @@ const Passport = ({ data, user }) => {
                 </Text>
               </Box>
               <Box>
-                {data.addresses[0].city}, {data.addresses[0].stateCode}
+                {data.addresses.length > 0 && (<div>{data.addresses[0].city}, {data.addresses[0].stateCode}</div>)}
               </Box>
               <Button
                 onClick={() => {
@@ -134,14 +134,16 @@ const Passport = ({ data, user }) => {
 
   return (
     <>
-      <Box borderWidth="1px" borderRadius="lg" padding="10" margin="20">
+    <VStack>
+      <Box borderWidth="1px" borderRadius="lg" padding="10" margin="10">
         <Box d="flex" flexWrap="wrap">
           {display()}
         </Box>
       </Box>
           <Text>National Parks Visited: {parkCount}/63</Text>
      
-          <Text>{allParkCount} NPS Sites Visited</Text>
+          <Text>Total NPS Sites Visited: {allParkCount} </Text>
+          </VStack>
        
         
       

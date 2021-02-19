@@ -80,9 +80,12 @@ const park_info = () => {
               )
               .then((data) => {
                 console.log("person park data:", data.data.data);
+                router.push('/profile')
+
               })
               .catch((err) => {
                 console.log("error with person park", err);
+             
               });
           });
       })
@@ -106,7 +109,7 @@ const park_info = () => {
                   <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/US-NationalParkService-Logo.svg/1200px-US-NationalParkService-Logo.svg.png" h="10%" w="10%"></Image>
                   <Text fontSize="4xl">{parkData[0][0].fullName}</Text>
                   <HStack>
-                    <Button onClick={addToPassport}>Stamp Passport</Button>
+                    <Button onClick={addToPassport} value="Stamp Passport">Stamp Passport</Button>
                     <Button
                       onClick={() => {
                         router.push({
@@ -149,31 +152,36 @@ const park_info = () => {
                       Address:
                     </Box>
                     <Box w="100%" h="20">
-                      <Box>{parkData[0][0].addresses[0].line1}</Box>
+                      {parkData[0][0].addresses.length > 0 && (
+                        <>
+                        <Box>{parkData[0][0].addresses[0].line1}</Box>
                       <Box>{parkData[0][0].addresses[0].line2}</Box>
                       <Box>
                         {parkData[0][0].addresses[0].city},{" "}
                         {parkData[0][0].addresses[0].stateCode}{" "}
                         {parkData[0][0].addresses[0].postalCode}
                       </Box>
+                        </>
+                      )}
+                      
                     </Box>
                     <Box w="100%" h="10">
-                      Entrance Fee
+                      Entrance Fee:
                     </Box>
                     <Box w="100%" h="10">
-                      {!parkData[0][0].entranceFees.cost && <div>None</div>}
-                      {parkData[0][0].entranceFees.cost && (
-                        <div>{parkData[0][0].entranceFees.cost}</div>
+                      {parkData[0][0].entranceFees[0].lengh === 0 && <div>None</div>}
+                      {parkData[0][0].entranceFees[0].cost && (
+                        <div>${parkData[0][0].entranceFees[0].cost}</div>
                       )}
                     </Box>
                     <Box w="100%" h="10">
-                      Designation
+                      Designation:
                     </Box>
                     <Box w="100%" h="10">
                       {parkData[0][0].designation}
                     </Box>
                     <Box w="100%" h="20">
-                      Hours
+                      Hours:
                     </Box>
                     <Box w="100%" h="20">
                       Monday:{" "}

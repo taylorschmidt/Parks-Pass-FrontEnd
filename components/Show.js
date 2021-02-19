@@ -48,7 +48,7 @@ const Show = ({ searchResult }) => {
             </Text>
           </Box>
           <Box>
-            {data.addresses[0].city}, {data.addresses[0].stateCode}
+            {data.addresses.length > 0 && (<div>{data.addresses[0].city}, {data.addresses[0].stateCode}</div>)}
           </Box>
           {/* <Center>
                 <Button onClick={() => {

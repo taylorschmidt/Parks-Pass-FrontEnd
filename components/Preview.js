@@ -60,7 +60,12 @@ import {
                   </Text>
                 </Box>
                 <Box>
-                  {data.addresses[0].city}, {data.addresses[0].stateCode}
+                {!data.addresses && (
+                    <div></div>
+                  )}
+                  {data.addresses.length > 0 && (
+                    <div>{data.addresses[0].city}, {data.addresses[0].stateCode}</div>
+                  )}
                 </Box>
               </Box>
             </Box>

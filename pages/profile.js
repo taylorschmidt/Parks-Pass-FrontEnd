@@ -113,7 +113,7 @@ const profile = () => {
   return (
     <>
       {loading && (<div>
-        <Box w="100%" mt={5} textAlign='center' ml="150%">
+        <Box w="100%" mt={5} textAlign='center'>
         
              <VStack>
             <Image  h="50%" w="50%" src="https://i.imgur.com/ne3muOR.png"></Image>

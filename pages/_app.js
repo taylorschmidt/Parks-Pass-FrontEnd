@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
 	
 	const isThereAUser = () => {
 	axios
-      .get('https://parkspassport-api-heroku.herokuapp.com' + `/api/v1/user/`, { withCredentials: true })
+      .get(process.env.NEXT_PUBLIC_BACKEND_URL  + `/api/v1/user/`, { withCredentials: true })
       .then((data) => {
 		  if (data.data.status.code === 200) {
 			  setIsUser(true)

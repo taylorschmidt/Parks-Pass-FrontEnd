@@ -22,7 +22,7 @@ import {
   
     const logout = () => {
       axios
-        .get("http://localhost:8000" + `/api/v1/user/logout`, {
+        .get(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/logout`, {
           withCredentials: true,
         })
         .then((data) => {

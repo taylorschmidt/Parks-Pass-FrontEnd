@@ -22,7 +22,7 @@ import {
   
     const changeTheUsername = () => {
         axios
-        .put("http://localhost:8000" + `/api/v1/user/update`, {
+        .put(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/update`, {
             username: newUsername,
             email: email,
           }, { withCredentials: true })

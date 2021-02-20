@@ -99,7 +99,7 @@ const Passport = ({ data, user }) => {
                 onClick={() => {
                   axios
                     .post(
-                      "http://localhost:8000" + `/api/v1/park/`,
+                      process.env.REACT_APP_BACKEND_URL + `/api/v1/park/`,
                       { park_code: data.parkCode },
                       { withCredentials: true }
                     )
@@ -109,7 +109,7 @@ const Passport = ({ data, user }) => {
                       //another axios call to post person_park connection
                       axios
                         .post(
-                          "http://localhost:8000" +
+                          process.env.REACT_APP_BACKEND_URL +
                             `/api/v1/person_park/visited/delete`,
                           { person_id: user.id, visited_park_id: visitedId },
                           { withCredentials: true }

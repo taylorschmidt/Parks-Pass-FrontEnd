@@ -31,7 +31,7 @@ const SignUpForm = () => {
     const register = (e) => {
         e.preventDefault()
         axios.post(
-            process.env.BACKEND_URL + `/api/v1/user/register`,
+            process.env.NEXT_PUBLIC_BACKEND_URL + `/api/v1/user/register`,
             {username: username,
             email: email,
             password: password

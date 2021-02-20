@@ -77,7 +77,7 @@ import {
   
     return (
       <>
-        <Box borderWidth="1px" borderRadius="lg" padding="10" margin="20">
+        <Box borderWidth="1px" borderRadius="lg" padding="5" margin="8" mt="5">
           <Text className="parksFont" fontSize="3xl">Popular Parks</Text>
           <Box d="flex" flexWrap="wrap">
             {display()}

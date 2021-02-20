@@ -58,8 +58,8 @@ const Show = ({ searchResult }) => {
     });
   };
   return (
-    <Flex flexWrap="wrap" mt={-50}>
-    <Box borderWidth="1px" borderRadius="lg" padding="10" margin="10" mt="5">
+    <Flex flexWrap="wrap">
+    <Box borderWidth="1px" borderRadius="lg" padding="5" margin="8" mt="5">
       <Box d="flex" flexWrap="wrap">
         {display()}
       </Box>

@@ -145,7 +145,7 @@ const Passport = ({ data, user }) => {
   return (
     <>
       <VStack>
-        <Box borderWidth="1px" borderRadius="lg" padding="10" margin="10" w="100%">
+      <Box borderWidth="1px" borderRadius="lg" padding="5" margin="8" mt="5">
           <Box d="flex" flexWrap="wrap">
             {display()}
           </Box>

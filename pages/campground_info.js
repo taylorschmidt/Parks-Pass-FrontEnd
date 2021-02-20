@@ -117,7 +117,7 @@ const campground_info = () => {
         <>
         {!loading && (
           <div>
-          <Box w="100%" mt={5} textAlign='center' ml="150%">
+          <Box w="100%" mt={5} textAlign='center'>
           
                <VStack>
               <Image  h="50%" w="50%" src="https://i.imgur.com/ne3muOR.png"></Image>
@@ -140,7 +140,7 @@ const campground_info = () => {
              </Center>
              </Box>
              <Flex flexWrap="wrap">
-          <Box borderWidth="1px" borderRadius="lg" padding="10" margin="10">
+             <Box borderWidth="1px" borderRadius="lg" padding="5" margin="8" mt="5">
             <Box d="flex" flexWrap="wrap">
               {display()}
             </Box>

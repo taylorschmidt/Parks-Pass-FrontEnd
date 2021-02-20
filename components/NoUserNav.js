@@ -8,6 +8,7 @@ import {
     Text,
     Spacer,
   } from "@chakra-ui/react";
+  import {MoonIcon, SunIcon} from '@chakra-ui/icons'
   import Link from "next/link";
   import { useRouter } from "next/router";
   import { useState, useEffect } from "react";
@@ -48,14 +49,14 @@ import {
           <Spacer />
           <Box p={2} opacity={router.pathname !== "/form" ? 0.6 : 1}>
             <Link href="/form">
-              <a>Join ParksPass</a>
+              <a>Join</a>
             </Link>
           </Box>
           <Box p={1}>
             <IconButton
               rounded="full"
               onClick={toggleColorMode}
-              icon={colorMode === "light" ? "moon" : "sun"}
+              icon={colorMode === "light" ? <MoonIcon color="gray"/> : <SunIcon />}
             ></IconButton>
           </Box>
         </Flex>

@@ -71,12 +71,13 @@ const search_parks = () => {
     <>{!loading && (
       <div>Loading</div>
     )}
-    {loading && ( <VStack>
+    {loading && ( <VStack className="top-div">
       <Image src="https://i.imgur.com/ne3muOR.png" h="20%" w="11%"></Image>
         <Center w="60%">
           <Button bg="1"
               _hover={{ background: "2" }}
-              color="white" type="submit" onClick={getParkData} p={3}>
+              color="white" type="submit" onClick={getParkData} p={3}
+              size="mg" textSize="20px">
             Search Parks
           </Button>
           <FormControl id="park-search" p={3} type="submit" onSubmit={getParkData}>

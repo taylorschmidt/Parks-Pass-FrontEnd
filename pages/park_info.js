@@ -13,18 +13,15 @@ import {
   Center,
   Image,
   Grid,
-  GridItem,
-  Link,
-  ExternalLinkIcon,
 } from "@chakra-ui/react";
-import ImageSlider from "../components/ImageSlider"
+import ImageSlider from "../components/ImageSlider";
 
 const park_info = () => {
   const { query } = useRouter();
   const router = useRouter();
   const [parkData, setParkData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [images, setImages] = useState([])
+  const [images, setImages] = useState([]);
 
   const getParkData = () => {
     axios
@@ -35,12 +32,12 @@ const park_info = () => {
         let parkDataAPI = data.data.data;
         console.log("from NPAPI", parkDataAPI);
         if (parkDataAPI.length === 0) {
-          router.push('/search_parks')
-          return
+          router.push("/search_parks");
+          return;
         }
         setTimeout(() => {
           parkData.push(parkDataAPI);
-          loopParkData()
+          loopParkData();
           setLoading(true);
           console.log(parkData);
         }, 2000);
@@ -52,17 +49,15 @@ const park_info = () => {
 
   const loopParkData = () => {
     if (parkData.length === 0) {
-      return
+      return;
+    } else if (parkData.length > 0) {
+      let imagesArray = parkData[0][0].images;
+      console.log(imagesArray);
+      imagesArray.forEach((image) => {
+        images.push(image.url);
+      });
     }
-    else if(parkData.length > 0) {
-      let imagesArray = parkData[0][0].images
-      console.log(imagesArray)
-      imagesArray.forEach((image)=>{
-          images.push(image.url)
-      })
-    }
-  }
-
+  };
 
   const addToPassport = () => {
     console.log(query.code);
@@ -89,12 +84,10 @@ const park_info = () => {
               )
               .then((data) => {
                 console.log("person park data:", data.data.data);
-                router.push('/profile')
-
+                router.push("/profile");
               })
               .catch((err) => {
                 console.log("error with person park", err);
-             
               });
           });
       })
@@ -102,46 +95,64 @@ const park_info = () => {
         console.log("error finding user", err);
       });
   };
- 
-  
+
   useEffect(() => {
     getParkData();
   }, []);
 
   return (
     <>
-    {!loading && (
-      <div>
-      <Box w="100%" mt={5} textAlign='center' ml="150%">
-      
-           <VStack>
-          <Image  h="50%" w="50%" src="https://i.imgur.com/ne3muOR.png"></Image>
-          <Box><Text className="parksFont">Loading...</Text></Box>
-          </VStack>
-  
-         </Box>
-      </div>
-    )}
+      {!loading && (
+        <div>
+          <Box w="100%" mt={5} textAlign="center">
+            <VStack>
+              <Image
+                h="50%"
+                w="50%"
+                src="https://i.imgur.com/ne3muOR.png"
+              ></Image>
+              <Box>
+                <Text className="parksFont">Loading...</Text>
+              </Box>
+            </VStack>
+          </Box>
+        </div>
+      )}
       {loading && (
         <div>
           <Box w="100%">
             <Box w="100%" mt={3}>
               <Center>
                 <VStack>
-                  <Image src="https://i.imgur.com/ne3muOR.png" h="30%" w="30%"></Image>
-                  <Text className="parksFont" fontSize="5xl">{parkData[0][0].fullName}</Text>
+                  <Image
+                    src="https://i.imgur.com/ne3muOR.png"
+                    h="30%"
+                    w="30%"
+                  ></Image>
+                  <Text className="parksFont" fontSize="5xl">
+                    {parkData[0][0].fullName}
+                  </Text>
                   <HStack>
-                    <Button bg="1"
-              _hover={{ background: "2" }}
-              color="white" onClick={addToPassport} value="Stamp Passport">Stamp Passport</Button>
                     <Button
-                    bg="1"
-                    _hover={{ background: "2" }}
-                    color="white"
+                      bg="1"
+                      _hover={{ background: "2" }}
+                      color="white"
+                      onClick={addToPassport}
+                      value="Stamp Passport"
+                    >
+                      Stamp Passport
+                    </Button>
+                    <Button
+                      bg="1"
+                      _hover={{ background: "2" }}
+                      color="white"
                       onClick={() => {
                         router.push({
                           pathname: `/campground_info`,
-                          query: { code: parkData[0][0].parkCode, name: parkData[0][0].fullName },
+                          query: {
+                            code: parkData[0][0].parkCode,
+                            name: parkData[0][0].fullName,
+                          },
                         });
                       }}
                     >
@@ -152,99 +163,108 @@ const park_info = () => {
               </Center>
             </Box>
 
-            <Box borderWidth="1px" mt={3}>
-              <Flex>
-                <Box w="40%">
-                  <Grid
-                    templateRows="repeat(5, 1fr)"
-                    templateColumns="1fr 2fr"
-                    p={10}
-                  >
-                    <Box w="100%" h="5" className="parksFont" fontSize="lg">
-                      Website
-                    </Box>
-                    <Box w="100%" h="5">
-                      <Text className="parksFont" fontSize="lg"
-                        onClick={()=>{
-                          window.open(parkData[0][0].url, '_blank')
-                        }}
-                      >Click Here</Text>
-                    </Box>
-                    <Box w="100%" h="10" className="parksFont" fontSize="lg">
-                      Designation
-                    </Box>
-                    <Box w="100%" h="10" className="parksFont" fontSize="lg">
-                      {parkData[0][0].designation}
-                    </Box>
-                    <Box w="100%" h="10" className="parksFont" fontSize="lg">
-                      Entrance Fee
-                    </Box>
-                    <Box w="100%" h="10" className="parksFont" fontSize="lg">
-                      {parkData[0][0].entranceFees[0].lengh === 0 && <div>None</div>}
-                      {parkData[0][0].entranceFees[0].cost && (
-                        <div>${parkData[0][0].entranceFees[0].cost}</div>
-                      )}
-                    </Box>
-                    <Box w="100%" h="20" className="parksFont" fontSize="lg">
-                      Address
-                    </Box>
-                    <Box w="100%" h="20" className="parksFont" fontSize="lg">
-                      {parkData[0][0].addresses.length > 0 && (
-                        <>
-                        <Box className="parksFont" fontSize="lg">{parkData[0][0].addresses[0].line1}</Box>
-                      <Box className="parksFont" fontSize="lg">{parkData[0][0].addresses[0].line2}</Box>
-                      <Box className="parksFont" fontSize="lg">
-                        {parkData[0][0].addresses[0].city},{" "}
-                        {parkData[0][0].addresses[0].stateCode}{" "}
-                        {parkData[0][0].addresses[0].postalCode}
-                      </Box>
-                        </>
-                      )}
-                      
-                    </Box>
-                    
-                    
-                    <Box w="100%" h="20" className="parksFont" fontSize="lg">
-                      Hours
-                    </Box>
-                    <Box w="100%" h="20" className="parksFont" fontSize="lg">
-                      Monday - {" "}
-                      {parkData[0][0].operatingHours[0].standardHours.monday}
-                      <br></br>
-                      Tuesday - {" "}
-                      {parkData[0][0].operatingHours[0].standardHours.tuesday}
-                      <br></br>
-                      Wednesday - {" "}
-                      {parkData[0][0].operatingHours[0].standardHours.wednesday}
-                      <br></br>
-                      Thursday - {" "}
-                      {parkData[0][0].operatingHours[0].standardHours.thursday}
-                      <br></br>
-                      Friday - {" "}
-                      {parkData[0][0].operatingHours[0].standardHours.friday}
-                      <br></br>
-                      Saturday - {" "}
-                      {parkData[0][0].operatingHours[0].standardHours.saturday}
-                      <br></br>
-                      Sunday - {" "}
-                      {parkData[0][0].operatingHours[0].standardHours.sunday}
-                    </Box>
-                  </Grid>
-                </Box>
+            <Box borderWidth="1px" mt={3} d="flex" flexWrap="wrap" w="100%" h="100%">
+              <Box className='grid' w="45%">
+                <Grid
+                  templateRows="repeat(5, 1fr)"
+                  templateColumns="1fr 2fr"
+                  p={10}
+                  mb="100px"
+                  width="100%"
+                >
+                  <Box w="100%" h="5" className="parksFont" fontSize="lg">
+                    Website
+                  </Box>
+                  <Box w="100%" h="5">
+                    <Text
+                      className="parksFont"
+                      fontSize="lg"
+                      onClick={() => {
+                        window.open(parkData[0][0].url, "_blank");
+                      }}
+                    >
+                      Click Here
+                    </Text>
+                  </Box>
+                  <Box w="100%" h="10" className="parksFont" fontSize="lg">
+                    Designation
+                  </Box>
+                  <Box w="100%" h="10" className="parksFont" fontSize="lg">
+                    {parkData[0][0].designation}
+                  </Box>
+                  <Box w="100%" h="10" className="parksFont" fontSize="lg">
+                    Entrance Fee
+                  </Box>
+                  <Box w="100%" h="10" className="parksFont" fontSize="lg">
+                    {parkData[0][0].entranceFees[0].lengh === 0 && (
+                      <div>None</div>
+                    )}
+                    {parkData[0][0].entranceFees[0].cost && (
+                      <div>${parkData[0][0].entranceFees[0].cost}</div>
+                    )}
+                  </Box>
+                  <Box w="100%" h="20" className="parksFont" fontSize="lg">
+                    Address
+                  </Box>
+                  <Box w="100%" h="20" className="parksFont" fontSize="lg">
+                    {parkData[0][0].addresses.length > 0 && (
+                      <>
+                        <Box className="parksFont" fontSize="lg">
+                          {parkData[0][0].addresses[0].line1}
+                        </Box>
+                        <Box className="parksFont" fontSize="lg">
+                          {parkData[0][0].addresses[0].line2}
+                        </Box>
+                        <Box className="parksFont" fontSize="lg">
+                          {parkData[0][0].addresses[0].city},{" "}
+                          {parkData[0][0].addresses[0].stateCode}{" "}
+                          {parkData[0][0].addresses[0].postalCode}
+                        </Box>
+                      </>
+                    )}
+                  </Box>
 
-                <Box w="60%" p={3} m={3}>
-                  <Flex alignItems="center">
-                    <VStack>
-                      <Box w="100%">
-                      <ImageSlider images={images}/>
-                      </Box>
-                      <Box>
-                        <Text>{parkData[0][0].description}</Text>
-                      </Box>
-                    </VStack>
-                  </Flex>
+                  <Box w="100%" h="20" className="parksFont" fontSize="lg">
+                    Hours
+                  </Box>
+                  <Box w="100%" h="20" className="parksFont" fontSize="lg">
+                    Monday -{" "}
+                    {parkData[0][0].operatingHours[0].standardHours.monday}
+                    <br></br>
+                    Tuesday -{" "}
+                    {parkData[0][0].operatingHours[0].standardHours.tuesday}
+                    <br></br>
+                    Wednesday -{" "}
+                    {parkData[0][0].operatingHours[0].standardHours.wednesday}
+                    <br></br>
+                    Thursday -{" "}
+                    {parkData[0][0].operatingHours[0].standardHours.thursday}
+                    <br></br>
+                    Friday -{" "}
+                    {parkData[0][0].operatingHours[0].standardHours.friday}
+                    <br></br>
+                    Saturday -{" "}
+                    {parkData[0][0].operatingHours[0].standardHours.saturday}
+                    <br></br>
+                    Sunday -{" "}
+                    {parkData[0][0].operatingHours[0].standardHours.sunday}
+                  </Box>
+                </Grid>
                 </Box>
-              </Flex>
+              
+
+              <Box w="50%" p={3} m={3} d="flex" className="grid">
+                <Center>
+                  <VStack>
+                    <Box w="100%">
+                      <ImageSlider images={images} />
+                    </Box>
+                    <Box>
+                      <Text>{parkData[0][0].description}</Text>
+                    </Box>
+                  </VStack>
+                  </Center>
+              </Box>
             </Box>
           </Box>
         </div>
@@ -252,4 +272,4 @@ const park_info = () => {
     </>
   );
 };
-export default park_info
+export default park_info;

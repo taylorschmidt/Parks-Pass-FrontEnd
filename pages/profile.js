@@ -15,7 +15,6 @@ import { EditIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 import ChangeUsername from "../components/ChangeUsername";
 import ParkCount from "../components/ParkCount";
-import NoUserNav from "../components/NoUserNav";
 
 const profile = () => {
   const { colorMode } = useColorMode();
@@ -128,8 +127,8 @@ const profile = () => {
       )}
       {!loading && user &&  
       (
-        <div>
-          <VStack>
+        <div className="top-div">
+          <VStack >
             <Box
               mt={5}
               className="passportSign"
@@ -177,10 +176,11 @@ const profile = () => {
                 </Box>
               </div>
             )}
+            
             <Flex flexWrap="wrap">
               <Passport data={axiosPassport} user={user} />
             </Flex>
-            <Box></Box>
+           
           </VStack>
         </div>
       )}

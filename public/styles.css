@@ -1,3 +1,7 @@
+.container {
+    margin: 0 auto;
+}
+
 .myForm {
     width: 65%;
 }
@@ -22,6 +26,72 @@
     clip-path: polygon(0 0, 100% 10%, 93% 100%, 25% 100%);
     background-image: url('https://i.imgur.com/NBpSIkA.jpg');
 }
+
+.left-div{
+    animation: moveInLeft 1s ease-out;
+  }
+  
+  .right-div {
+    animation: moveInRight 1s ease-out;
+  }
+  
+  @keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+        /* transform: rotate(180deg) */
+    }
+    80% {
+        transform: translateX(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+  }
+  
+  @keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+  
+    }
+    80% {
+        transform: translateX(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+  }
+
+  .top-div {
+    animation: moveInTop 1s ease-out;
+  }
+    
+  @keyframes moveInTop {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+  
+    }
+    80% {
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+  }
+
+
+
+
+
+
+
+
+
 /* IPAD */
 @media only screen 
   and (min-device-width: 768px) 
@@ -37,6 +107,9 @@
  .passportImage {
     display: none
 }
+.index-left {
+    margin-left: 0
+}
 }
 
 @media only screen 
@@ -48,7 +121,8 @@
         width: 300px
      }
      .passportTitle {
-         font-size: 100% !important;
+         font-size: 20px !important;
+         text-align: center !important;
          margin: 0 auto;
          padding: 0;
          margin-right: 55px;
@@ -56,5 +130,15 @@
      .passportImage {
          display: none
      }
+     .left-index {
+       height: 50%;
+       width: 50%
+    }
+    .right-index {
+        width: 100%
+    }
+    .grid {
+        width: 100% !important;
+    }
 }
 

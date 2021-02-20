@@ -44,7 +44,9 @@ function MyApp({ Component, pageProps }) {
 				{isUser && (<Navbar />)}
 				{!isUser && (<NoUserNav />)}
 				<Flex>
+					<div className="container">
 						<Component {...pageProps} />
+					</div>
 				</Flex>
 			</ChakraProvider>
 	);

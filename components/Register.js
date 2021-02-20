@@ -31,7 +31,7 @@ const SignUpForm = () => {
     const register = (e) => {
         e.preventDefault()
         axios.post(
-            process.env.REACT_APP_BACKEND_URL + `/api/v1/user/register`,
+            'https://parkspassport-api-heroku.herokuapp.com' + `/api/v1/user/register`,
             {username: username,
             email: email,
             password: password

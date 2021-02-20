@@ -63,13 +63,13 @@ const park_info = () => {
     console.log(query.code);
     // axios call to get user data
     axios
-      .get(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/`, { withCredentials: true })
+      .get(process.env.NEXT_PUBLIC_BACKEND_URL + `/api/v1/user/`, { withCredentials: true })
       .then((data) => {
         let userId = data.data.data[0].id;
         //another axios call to find or create park
         axios
           .post(
-            process.env.REACT_APP_BACKEND_URL + `/api/v1/park/`,
+            process.env.NEXT_PUBLIC_BACKEND_URL + `/api/v1/park/`,
             { park_code: query.code },
             { withCredentials: true }
           )
@@ -78,7 +78,7 @@ const park_info = () => {
             //another axios call to post person_park connection
             axios
               .post(
-                process.env.REACT_APP_BACKEND_URL + `/api/v1/person_park/`,
+                process.env.NEXT_PUBLIC_BACKEND_URL + `/api/v1/person_park/`,
                 { person_id: userId, visited_park_id: visitedId },
                 { withCredentials: true }
               )

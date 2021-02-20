@@ -35,7 +35,7 @@ const LoginForm = () => {
     e.preventDefault();
     axios
       .post(
-        process.env.REACT_APP_BACKEND_URL + `/api/v1/user/login`,
+        process.env.NEXT_PUBLIC_BACKEND_URL + `/api/v1/user/login`,
         {
           email: email,
           password: password,

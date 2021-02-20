@@ -22,7 +22,7 @@ import {
   
     const changeTheUsername = () => {
         axios
-        .put(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/update`, {
+        .put(process.env.NEXT_PUBLIC_BACKEND_URL + `/api/v1/user/update`, {
             username: newUsername,
             email: email,
           }, { withCredentials: true })

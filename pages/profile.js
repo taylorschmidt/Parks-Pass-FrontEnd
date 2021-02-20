@@ -29,7 +29,7 @@ const profile = () => {
 
   const getUser = () => {
     axios
-      .get(process.env.NEXT_PUBLIC_BACKEND_URLRLACKEND_URL + `/api/v1/user/`, { withCredentials: true })
+      .get(process.env.NEXT_PUBLIC_BACKEND_URL + `/api/v1/user/`, { withCredentials: true })
       .then((data) => {
         console.log("user data", data.data.data[0].email);
         let myEmail = data.data.data[0].email;
@@ -39,7 +39,7 @@ const profile = () => {
         setUser(userId);
         setEmail(myEmail);
         axios
-          .post(process.env.NEXT_PUBLIC_BACKEND_URLRLACKEND_URL + `/api/v1/person_park/visited`, {
+          .post(process.env.NEXT_PUBLIC_BACKEND_URL + `/api/v1/person_park/visited`, {
             email: myEmail,
           })
           .then((data) => {
@@ -84,7 +84,7 @@ const profile = () => {
 
   const logout = () => {
     axios
-      .get(process.env.NEXT_PUBLIC_BACKEND_URLRLACKEND_URL + `/api/v1/user/logout`, {
+      .get(process.env.NEXT_PUBLIC_BACKEND_URL + `/api/v1/user/logout`, {
         withCredentials: true,
       })
       .then((data) => {

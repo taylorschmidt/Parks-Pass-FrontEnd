@@ -35,7 +35,7 @@ const SignUpForm = () => {
             {username: username,
             email: email,
             password: password
-            }
+            }, { withCredentials: true }
         ).then((data)=>{
             console.log(data.data)
             if (data.data.status.code === 401) {

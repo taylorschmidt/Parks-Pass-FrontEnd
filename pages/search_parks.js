@@ -68,8 +68,10 @@ const search_parks = () => {
   }, []);
 
   return (
-    <>
-      <VStack>
+    <>{!loading && (
+      <div>Loading</div>
+    )}
+    {loading && ( <VStack>
       <Image src="https://i.imgur.com/ne3muOR.png" h="20%" w="11%"></Image>
         <Center w="60%">
           <Button bg="1"
@@ -102,7 +104,8 @@ const search_parks = () => {
             <Show searchResult={searchResult} />
           </div>
         )}
-      </VStack>
+      </VStack>) }
+     
     </>
   );
 };

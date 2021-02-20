@@ -2,7 +2,7 @@
 ## Introduction
 Parks Pass allows its user to search for national park site and camping data and add parks to their virtual passport.
 ## Landing Page
-![Image of Landing]()
+![Image of Landing](https://i.imgur.com/Qzi94m9.png)
 ## Technology
 * React
 * Next.js
@@ -28,9 +28,12 @@ https://github.com/taylorschmidt/Parks-Pass-BackEnd
 * Created RESTful routes in the backend that allow for the manipulation of database models.
 * Developed React components with Next.js and Chakra to match wireframes and connect to the database models.
 #### ERD
-![Image of ERD](https://i.imgur.com/pDLvnet.png)
+![Image of ERD](https://i.imgur.com/D2r7M2t.png)
 #### Wireframes
-##### 
+##### Search Page
+![Image of Search](https://i.imgur.com/lS5upM9.png)
+##### Park Information
+![Image of Info](https://i.imgur.com/NLKao7U.png)
 ## Challenges
 * Utilising Axios to connect to backend routes.
 * Deploying with Surge and editing unrecognized routes.

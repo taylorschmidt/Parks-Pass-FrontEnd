@@ -8,7 +8,7 @@ const Home = () => {
     const router = useRouter();
     return(
         <>
-        <Box w="100%" mt={20} ml={50}>
+        <Box w="100%" mt={20} ml={100}>
             <Center>
                 <Flex flexWrap="wrap" align-content="right">
                     <Box>

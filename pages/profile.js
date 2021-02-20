@@ -8,10 +8,14 @@ import {
   useColorMode,
   Text,
   VStack,
+  Center,
+  Image,
 } from "@chakra-ui/react";
+import { EditIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 import ChangeUsername from "../components/ChangeUsername";
 import ParkCount from "../components/ParkCount";
+import NoUserNav from "../components/NoUserNav";
 
 const profile = () => {
   const { colorMode } = useColorMode();
@@ -99,21 +103,67 @@ const profile = () => {
     setChangeRequest(true);
   };
 
+  const noUser = () => {
+    router.push('/form')
+  }
+
   useEffect(() => {
     getUser();
   }, []);
 
   return (
     <>
-      {loading && <div>Page is loading!</div>}
-      {!loading && (
+      {loading && (<div>
+        <Box w="100%" mt={5} textAlign='center' ml="150%">
+        
+             <VStack>
+            <Image  h="50%" w="50%" src="https://i.imgur.com/ne3muOR.png"></Image>
+            <Box><Text className="parksFont">Loading...</Text></Box>
+            </VStack>
+    
+           </Box>
+        </div>)}
+      {!loading && !user && (
+        <div>{noUser()}</div>
+      )}
+      {!loading && user &&  
+      (
         <div>
           <VStack>
-            <Box>
-              <Text fontSize="3xl">{username}'s Passport</Text>
+            <Box
+              mt={5}
+              className="passportSign"
+              p={10}
+              w="30%"
+            >
+              <Center ml={12}>
+                <Image
+                className="passportImage"
+                  src="https://i.imgur.com/vX2ymJG.png"
+                  h="25%"
+                  w="25%"
+                  mr={3}
+                ></Image>
+                <Text
+                  color="#F3E5AB"
+                  className="parksFont passportTitle"
+                  fontSize="5xl"
+                  size="sm" fontSize="50px"
+                  ml={2}
+                >
+                  {username}'s Passport
+                </Text>
+              </Center>
             </Box>
             <ParkCount data={axiosPassport} />
-            <Button onClick={ChangeUsernameFun}>Edit Username</Button>
+            <Button
+              bg="1"
+              _hover={{ background: "2" }}
+              color="white"
+              onClick={ChangeUsernameFun}
+            >
+              <EditIcon />
+            </Button>
             {changeRequest && (
               <div>
                 <Box

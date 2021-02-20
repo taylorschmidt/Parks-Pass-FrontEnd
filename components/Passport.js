@@ -81,7 +81,7 @@ const Passport = ({ data, user }) => {
             )}
             <Box>
               <Box>
-                <Text fontSize="2xl" noOfLines={1}>
+                <Text className="parksFont" fontSize="2xl" noOfLines={1}>
                   {data.fullName}
                 </Text>
               </Box>
@@ -93,6 +93,9 @@ const Passport = ({ data, user }) => {
                 )}
               </Box>
               <Button
+              bg="1"
+              _hover={{ background: "2" }}
+              color="white"
                 onClick={() => {
                   axios
                     .post(
@@ -124,7 +127,9 @@ const Passport = ({ data, user }) => {
                     .catch((err) => {
                       console.log("error finding user", err);
                     });
-                  location.reload();
+                    setTimeout(() => {
+                      location.reload()
+                    }, 500);
                 }}
               >
                 Remove from Passport
@@ -140,13 +145,11 @@ const Passport = ({ data, user }) => {
   return (
     <>
       <VStack>
-        <Box borderWidth="1px" borderRadius="lg" padding="10" margin="10">
+        <Box borderWidth="1px" borderRadius="lg" padding="10" margin="10" w="100%">
           <Box d="flex" flexWrap="wrap">
             {display()}
           </Box>
         </Box>
-        <Text>National Parks Visited: {parkCount}/63</Text>
-        <Text>Total NPS Sites Visited: {allParkCount} </Text>
       </VStack>
     </>
   );

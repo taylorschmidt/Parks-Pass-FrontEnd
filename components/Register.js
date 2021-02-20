@@ -91,10 +91,12 @@ const SignUpForm = () => {
                 </FormControl>
                 <Button
                     // type="submit"
+                    bg="1"
+                    _hover={{ background: "2", boxShadow: "lg" }}
+              color="white"
                     variant="solid"
                     variantColor="red"
                     boxShadow="sm"
-                    _hover={{boxShadow: "lg"}}
                     _active={{boxShadow: "lg"}}
                     onClick={register}
                     >

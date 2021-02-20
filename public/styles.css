@@ -1,3 +1,60 @@
 .myForm {
     width: 65%;
 }
+
+@font-face {
+    font-family: nationalParks;
+    src: url('./NationalPark-Regular.otf');
+  }
+  
+  .parksFont {
+    font-family: nationalParks
+  }
+
+.showSearch {
+    margin-top: -50%
+}
+
+.passportSign {
+    
+    /* clip-path: polygon(0 0, 100% 0%, 93% 100%, 25% 100%); */
+   
+    clip-path: polygon(0 0, 100% 10%, 93% 100%, 25% 100%);
+    background-image: url('https://i.imgur.com/NBpSIkA.jpg');
+}
+/* IPAD */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+ .passportSign {
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+    width: 300px
+ }
+ .passportTitle {
+     font-size: 100% !important;
+ }
+ .passportImage {
+    display: none
+}
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .passportSign {
+        clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+        width: 300px
+     }
+     .passportTitle {
+         font-size: 100% !important;
+         margin: 0 auto;
+         padding: 0;
+         margin-right: 55px;
+     }
+     .passportImage {
+         display: none
+     }
+}
+

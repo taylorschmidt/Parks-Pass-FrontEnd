@@ -10,7 +10,8 @@ function MyApp({ Component, pageProps }) {
 
 	const theme = extendTheme({
 		colors: {
-			1: "#8ead99"
+			1: "#1F3D0C",
+			2: "#809176"
 		},
 		components: {
 			Button: {

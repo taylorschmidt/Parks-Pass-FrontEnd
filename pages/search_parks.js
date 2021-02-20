@@ -14,6 +14,7 @@ import {
   Spacer,
   HStack,
   Center,
+  Image
 } from "@chakra-ui/react";
 import Show from "../components/Show";
 import Preview from "../components/Preview";
@@ -69,8 +70,11 @@ const search_parks = () => {
   return (
     <>
       <VStack>
-        <Center w="50%">
-          <Button type="submit" onClick={getParkData} p={3}>
+      <Image src="https://i.imgur.com/ne3muOR.png" h="20%" w="11%"></Image>
+        <Center w="60%">
+          <Button bg="1"
+              _hover={{ background: "2" }}
+              color="white" type="submit" onClick={getParkData} p={3}>
             Search Parks
           </Button>
           <FormControl id="park-search" p={3} type="submit" onSubmit={getParkData}>
@@ -94,7 +98,7 @@ const search_parks = () => {
           </div>
         )}
         {searchedPark && (
-          <div>
+          <div className="showSearch">
             <Show searchResult={searchResult} />
           </div>
         )}

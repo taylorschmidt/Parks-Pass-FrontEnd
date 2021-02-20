@@ -23,9 +23,10 @@ import {
     return (
       <Flex
         w="100vw"
-        bg={bgColor[colorMode]}
+        // bg={bgColor[colorMode]}
+        bg="1"
         // align='center'
-        color={textColor[colorMode]}
+        color='white'
         // justify='center'
         // align='center'
         fontSize={["md", "lg", "xl", "xl"]}
@@ -34,18 +35,18 @@ import {
         p={3}
       >
         <Flex w={["100vw", "100vw", "100vw", "100vw"]}>
-          <Box p={2} opacity={router.pathname !== "/index" ? 0.4 : 1}>
+          <Box p={2} opacity={router.pathname !== "/index" ? 0.6 : 1}>
             <Link href="/">
               <a>Home</a>
             </Link>
           </Box>
-          <Box p={2} opacity={router.pathname !== "/search_parks" ? 0.4 : 1}>
+          <Box p={2} opacity={router.pathname !== "/search_parks" ? 0.6 : 1}>
             <Link href="/search_parks">
               <a>Browse Parks</a>
             </Link>
           </Box>
           <Spacer />
-          <Box p={2} opacity={router.pathname !== "/form" ? 0.4 : 1}>
+          <Box p={2} opacity={router.pathname !== "/form" ? 0.6 : 1}>
             <Link href="/form">
               <a>Join ParksPass</a>
             </Link>

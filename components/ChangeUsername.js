@@ -8,7 +8,7 @@ import {
     Button,
     FormHelperText,
   } from "@chakra-ui/react";
-  import { InfoIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
+  import { InfoIcon, EmailIcon, LockIcon, EditIcon } from "@chakra-ui/icons";
   import { useState } from "react";
   import axios from 'axios'
   
@@ -52,11 +52,14 @@ import {
             variant="solid"
             variantColor="red"
             boxShadow="sm"
+            bg="1"
+              _hover={{ background: "2" }}
+              color="white"
             onClick={changeTheUsername}
             _hover={{ boxShadow: "lg" }}
             _active={{ boxShadow: "lg" }}
           >
-            Update Username!
+           Update Username
           </Button>
         </Stack>
       </>

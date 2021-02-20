@@ -55,7 +55,7 @@ import {
               )}
               <Box>
                 <Box>
-                  <Text fontSize="2xl" noOfLines={1}>
+                  <Text className="parksFont" fontSize="2xl" noOfLines={1}>
                     {data.fullName}
                   </Text>
                 </Box>
@@ -78,7 +78,7 @@ import {
     return (
       <>
         <Box borderWidth="1px" borderRadius="lg" padding="10" margin="20">
-          <Text>Popular Parks</Text>
+          <Text className="parksFont" fontSize="3xl">Popular Parks</Text>
           <Box d="flex" flexWrap="wrap">
             {display()}
           </Box>

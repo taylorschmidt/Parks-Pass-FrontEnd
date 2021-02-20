@@ -34,6 +34,10 @@ const park_info = () => {
       .then((data) => {
         let parkDataAPI = data.data.data;
         console.log("from NPAPI", parkDataAPI);
+        if (parkDataAPI.length === 0) {
+          router.push('/search_parks')
+          return
+        }
         setTimeout(() => {
           parkData.push(parkDataAPI);
           loopParkData()
@@ -47,11 +51,16 @@ const park_info = () => {
   };
 
   const loopParkData = () => {
-    let imagesArray = parkData[0][0].images
-    console.log(imagesArray)
-    imagesArray.forEach((image)=>{
-        images.push(image.url)
-    })
+    if (parkData.length === 0) {
+      return
+    }
+    else if(parkData.length > 0) {
+      let imagesArray = parkData[0][0].images
+      console.log(imagesArray)
+      imagesArray.forEach((image)=>{
+          images.push(image.url)
+      })
+    }
   }
 
 
@@ -93,6 +102,7 @@ const park_info = () => {
         console.log("error finding user", err);
       });
   };
+ 
   
   useEffect(() => {
     getParkData();
@@ -100,17 +110,34 @@ const park_info = () => {
 
   return (
     <>
+    {!loading && (
+      <div>
+      <Box w="100%" mt={5} textAlign='center' ml="150%">
+      
+           <VStack>
+          <Image  h="50%" w="50%" src="https://i.imgur.com/ne3muOR.png"></Image>
+          <Box><Text className="parksFont">Loading...</Text></Box>
+          </VStack>
+  
+         </Box>
+      </div>
+    )}
       {loading && (
         <div>
           <Box w="100%">
             <Box w="100%" mt={3}>
               <Center>
                 <VStack>
-                  <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/US-NationalParkService-Logo.svg/1200px-US-NationalParkService-Logo.svg.png" h="10%" w="10%"></Image>
-                  <Text fontSize="4xl">{parkData[0][0].fullName}</Text>
+                  <Image src="https://i.imgur.com/ne3muOR.png" h="30%" w="30%"></Image>
+                  <Text className="parksFont" fontSize="5xl">{parkData[0][0].fullName}</Text>
                   <HStack>
-                    <Button onClick={addToPassport} value="Stamp Passport">Stamp Passport</Button>
+                    <Button bg="1"
+              _hover={{ background: "2" }}
+              color="white" onClick={addToPassport} value="Stamp Passport">Stamp Passport</Button>
                     <Button
+                    bg="1"
+                    _hover={{ background: "2" }}
+                    color="white"
                       onClick={() => {
                         router.push({
                           pathname: `/campground_info`,
@@ -128,35 +155,45 @@ const park_info = () => {
             <Box borderWidth="1px" mt={3}>
               <Flex>
                 <Box w="40%">
-                  {/* <Center>
-                    <Text fontSize="2xl">Park Information:</Text>
-                  </Center> */}
                   <Grid
                     templateRows="repeat(5, 1fr)"
                     templateColumns="1fr 2fr"
                     p={10}
-                    // gap={2}
                   >
-                    <Box w="100%" h="5">
-                      Website:
+                    <Box w="100%" h="5" className="parksFont" fontSize="lg">
+                      Website
                     </Box>
                     <Box w="100%" h="5">
-                      <Text
+                      <Text className="parksFont" fontSize="lg"
                         onClick={()=>{
                           window.open(parkData[0][0].url, '_blank')
                         }}
                       >Click Here</Text>
-                      {/* <a href={parkData[0][0].url}>Link</a> */}
                     </Box>
-                    <Box w="100%" h="20">
-                      Address:
+                    <Box w="100%" h="10" className="parksFont" fontSize="lg">
+                      Designation
                     </Box>
-                    <Box w="100%" h="20">
+                    <Box w="100%" h="10" className="parksFont" fontSize="lg">
+                      {parkData[0][0].designation}
+                    </Box>
+                    <Box w="100%" h="10" className="parksFont" fontSize="lg">
+                      Entrance Fee
+                    </Box>
+                    <Box w="100%" h="10" className="parksFont" fontSize="lg">
+                      {parkData[0][0].entranceFees[0].lengh === 0 && <div>None</div>}
+                      {parkData[0][0].entranceFees[0].cost && (
+                        <div>${parkData[0][0].entranceFees[0].cost}</div>
+                      )}
+                    </Box>
+                    <Box w="100%" h="20" className="parksFont" fontSize="lg">
+                      Address
+                    </Box>
+                    <Box w="100%" h="20" className="parksFont" fontSize="lg">
                       {parkData[0][0].addresses.length > 0 && (
                         <>
-                        <Box>{parkData[0][0].addresses[0].line1}</Box>
-                      <Box>{parkData[0][0].addresses[0].line2}</Box>
-                      <Box>
+                        <Box className="parksFont" fontSize="lg">{parkData[0][0].addresses[0].line1}</Box>
+                      <Box className="parksFont" fontSize="lg">{parkData[0][0].addresses[0].line2}</Box>
+                      <Box className="parksFont" fontSize="lg">
                         {parkData[0][0].addresses[0].city},{" "}
                         {parkData[0][0].addresses[0].stateCode}{" "}
                         {parkData[0][0].addresses[0].postalCode}
@@ -165,44 +202,31 @@ const park_info = () => {
                       )}
                       
                     </Box>
-                    <Box w="100%" h="10">
-                      Entrance Fee:
+                    
+                    
+                    <Box w="100%" h="20" className="parksFont" fontSize="lg">
+                      Hours
                     </Box>
-                    <Box w="100%" h="10">
-                      {parkData[0][0].entranceFees[0].lengh === 0 && <div>None</div>}
-                      {parkData[0][0].entranceFees[0].cost && (
-                        <div>${parkData[0][0].entranceFees[0].cost}</div>
-                      )}
-                    </Box>
-                    <Box w="100%" h="10">
-                      Designation:
-                    </Box>
-                    <Box w="100%" h="10">
-                      {parkData[0][0].designation}
-                    </Box>
-                    <Box w="100%" h="20">
-                      Hours:
-                    </Box>
-                    <Box w="100%" h="20">
-                      Monday:{" "}
+                    <Box w="100%" h="20" className="parksFont" fontSize="lg">
+                      Monday - {" "}
                       {parkData[0][0].operatingHours[0].standardHours.monday}
                       <br></br>
-                      Tuesday:{" "}
+                      Tuesday - {" "}
                       {parkData[0][0].operatingHours[0].standardHours.tuesday}
                       <br></br>
-                      Wednesday:{" "}
+                      Wednesday - {" "}
                       {parkData[0][0].operatingHours[0].standardHours.wednesday}
                       <br></br>
-                      Thursday:{" "}
+                      Thursday - {" "}
                       {parkData[0][0].operatingHours[0].standardHours.thursday}
                       <br></br>
-                      Friday:{" "}
+                      Friday - {" "}
                       {parkData[0][0].operatingHours[0].standardHours.friday}
                       <br></br>
-                      Saturday:{" "}
+                      Saturday - {" "}
                       {parkData[0][0].operatingHours[0].standardHours.saturday}
                       <br></br>
-                      Sunday:{" "}
+                      Sunday - {" "}
                       {parkData[0][0].operatingHours[0].standardHours.sunday}
                     </Box>
                   </Grid>

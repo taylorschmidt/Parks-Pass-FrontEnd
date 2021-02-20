@@ -1,5 +1,17 @@
 import {useEffect, useState} from 'react'
-
+import {
+    Box,
+    Image,
+    Button,
+    HStack,
+    Container,
+    WrapItem,
+    Wrap,
+    Spacer,
+    Flex,
+    Text,
+    Center,
+  } from "@chakra-ui/react";
 const ParkCount = ({data}) => {
     const [loading, setLoading] = useState(true)
 
@@ -17,13 +29,16 @@ const ParkCount = ({data}) => {
     })
     }
   
-    
+
 
     return(
         <>
             {countingParks()}
-            {parkCount},
-            {allParkCount}
+            <Box>
+                <Text>National Parks Visited: {parkCount}/63</Text>
+                <Text>Total NPS Sites Visited: {allParkCount}</Text>
+            </Box>
+   
             </>
     )
 }

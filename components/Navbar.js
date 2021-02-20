@@ -42,31 +42,31 @@ import {
         w="100vw"
         // bg={bgColor[colorMode]}
         bg="1"
-        color={textColor[colorMode]}
+        color='white'
         fontSize={["md", "lg", "xl", "xl"]}
         h="10vh"
         boxShadow="md"
         p={3}
       >
         <Flex w={["100vw", "100vw", "100vw", "100vw"]}>
-          <Box p={2} opacity={router.pathname !== "/index" ? 0.4 : 1}>
+          <Box p={2} opacity={router.pathname !== "/index" ? 0.6 : 1}>
             <Link href="/">
               <a>Home</a>
             </Link>
           </Box>
   
-          <Box p={2} opacity={router.pathname !== "/search_parks" ? 0.4 : 1}>
+          <Box p={2} opacity={router.pathname !== "/search_parks" ? 0.6 : 1}>
             <Link href="/search_parks">
               <a>Browse Parks</a>
             </Link>
           </Box>
           <Spacer />
-          <Box p={2} opacity={router.pathname !== "/profile" ? 0.4 : 1}>
+          <Box p={2} opacity={router.pathname !== "/profile" ? 0.6 : 1}>
             <Link href="/profile">
               <a>Profile</a>
             </Link>
           </Box>
-          <Box p={2} opacity="0.4" cursor="pointer" onClick={logout}>
+          <Box p={2} opacity="0.6" cursor="pointer" onClick={logout}>
             Logout
           </Box>
   

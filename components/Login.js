@@ -85,12 +85,14 @@ const LoginForm = () => {
             </InputGroup>
           </FormControl>
           <Button
+          bg="1"
+          _hover={{ background: "2", boxShadow: "lg" }}
+          color="white"
             type="submit"
             variant="solid"
             variantColor="red"
             boxShadow="sm"
             onClick={login}
-            _hover={{ boxShadow: "lg" }}
             _active={{ boxShadow: "lg" }}
           >
             Log In!

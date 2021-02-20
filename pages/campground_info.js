@@ -49,7 +49,9 @@ const campground_info = () => {
             <VStack>
             <Box>😭😭😭</Box>
             <Box>This park does not have campgrounds.</Box>
-            <Button onClick={()=>{window.location='/search_parks'}}>Return Home</Button>
+            <Button bg="1"
+              _hover={{ background: "2" }}
+              color="white" onClick={()=>{window.location='/search_parks'}}>Return Home</Button>
             </VStack>
             </>
           )
@@ -64,7 +66,7 @@ const campground_info = () => {
                 borderRadius="lg"
                 overflow="hidden"
                 onClick={()=>{
-                  window.open(data.url, '_blank')
+                  {data.url && (window.open(data.url, '_blank'))  }
                 }}
                 _hover={{ opacity: ".5" }}
                 cursor= "pointer"
@@ -113,12 +115,30 @@ const campground_info = () => {
 
     return (
         <>
+        {!loading && (
+          <div>
+          <Box w="100%" mt={5} textAlign='center' ml="150%">
+          
+               <VStack>
+              <Image  h="50%" w="50%" src="https://i.imgur.com/ne3muOR.png"></Image>
+              <Box><Text className="parksFont">Loading...</Text></Box>
+              </VStack>
+      
+             </Box>
+          </div>
+        )}
         {loading && (
            <>
+          <Box w="100%" mt={5}>
+            <Center>
+
+           
            <VStack>
+             <Box>
              <Center>
-             <Text>Campgrounds in {query.name}</Text>
+             <Text className="parksFont" fontSize="5xl">Campgrounds in {query.name}</Text>
              </Center>
+             </Box>
              <Flex flexWrap="wrap">
           <Box borderWidth="1px" borderRadius="lg" padding="10" margin="10">
             <Box d="flex" flexWrap="wrap">
@@ -127,6 +147,8 @@ const campground_info = () => {
           </Box>
           </Flex>
           </VStack>
+          </Center>
+          </Box>
           </>
         )}
         </>

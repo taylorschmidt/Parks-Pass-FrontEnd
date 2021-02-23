@@ -131,11 +131,14 @@
          display: none
      }
      .left-index {
-       height: 50%;
-       width: 50%
+       width: 100% !important
     }
     .right-index {
-        width: 100%
+        width: 100% !important
+    }
+    .left-img {
+        height: 50%;
+        width: 50%
     }
     .grid {
         width: 100% !important;

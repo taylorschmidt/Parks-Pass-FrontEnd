@@ -26,14 +26,14 @@ const Home = () => {
     <Box w="100%" m="" d="flex" flexWrap="wrap">
           
             
-              <Box>
+              <Box className="left-index" width="40%">
                   <Center>
-                <Image className="left-index" width="75%" height="75%"
+                <Image className="left-img"
                   src="https://i.imgur.com/ne3muOR.png"
                 ></Image>
                 </Center>
               </Box>
-              <Box mt={49} className="right-div right-index">
+              <Box width="45%" mt={49} className="right-div right-index">
                   <Center>
                 <VStack>
                   <Text className="parksFont" textAlign="center" fontSize="5xl">

@@ -28,7 +28,7 @@ const Home = () => {
             
               <Box>
                   <Center>
-                <Image className="left-index"
+                <Image className="left-index" width="75%" height="75%"
                   src="https://i.imgur.com/ne3muOR.png"
                 ></Image>
                 </Center>

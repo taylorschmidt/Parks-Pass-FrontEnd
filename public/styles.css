@@ -28,7 +28,7 @@
 }
 
 .mobilePassport {
-    display: none
+    visibility: hidden
 }
 
 .left-div{
@@ -105,6 +105,9 @@
  .passportSign {
     display: none;
  }
+ .mobilePassport {
+    visibility: visible
+ }
  .passportTitle {
      font-size: 100% !important;
  }
@@ -128,6 +131,9 @@
          text-align: center !important;
          margin: 0 auto;
          padding: 0;
+     }
+     .mobilePassport {
+        visibility: visible
      }
      .passportImage {
          display: none

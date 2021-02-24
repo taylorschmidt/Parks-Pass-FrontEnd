@@ -41,8 +41,10 @@ const SignUpForm = () => {
             if (data.data.status.code === 401) {
                 setRepeatUser(true)
             }
-            else if (data.data.status.code === 200) {
-                router.push("/profile")
+            else if (data.data.status.code === 201) {
+                setTimeout(() => {
+                    window.location.replace("/profile")
+                  }, 500);
             }
         }).catch((err)=>{
             console.log("error registering user", err)

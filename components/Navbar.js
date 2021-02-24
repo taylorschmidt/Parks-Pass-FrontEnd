@@ -31,7 +31,6 @@ import {
         .catch((err) => {
           console.log(err);
         });
-    //   window.location.replace("/form");
       setTimeout(() => {
         window.location.replace("/form")
       }, 500);

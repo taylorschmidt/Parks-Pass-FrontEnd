@@ -164,13 +164,13 @@ const park_info = () => {
             </Box>
 
             <Box borderWidth="1px" mt={3} d="flex" flexWrap="wrap" w="100%" h="100%">
-              <Box className='grid' w="45%">
+              <Box className='grid' w="45%" mb={115}>
                 <Grid
                   templateRows="repeat(5, 1fr)"
                   templateColumns="1fr 2fr"
                   p={10}
-                  mb="100px"
                   width="100%"
+                  height="100%"
                 >
                   <Box w="100%" h="5" className="parksFont" fontSize="lg">
                     Website

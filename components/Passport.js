@@ -27,7 +27,7 @@ const Passport = ({ data, user }) => {
   const display = () => {
     return data.map((data, index) => {
       allParkCount += 1;
-      if (data.designation === "National Park") {
+      if (data.designation === "National Park" || data.designation === "National Park & Preserve" ) {
         parkCount += 1;
         console.log("park is counting", parkCount);
       }

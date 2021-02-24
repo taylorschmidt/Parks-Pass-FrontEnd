@@ -12,6 +12,7 @@ import {
   import { useRouter } from "next/router";
   import { useState, useEffect } from "react";
   import axios from "axios";
+  import {MoonIcon, SunIcon} from '@chakra-ui/icons'
   
   const Navbar = () => {
     const { colorMode, toggleColorMode } = useColorMode();
@@ -73,7 +74,7 @@ import {
             <IconButton
               rounded="full"
               onClick={toggleColorMode}
-              icon={colorMode === "light" ? "moon" : "sun"}
+              icon={colorMode === "light" ? <MoonIcon color="gray"/> : <SunIcon />}
             >
               Change Color Mode
             </IconButton>

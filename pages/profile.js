@@ -154,6 +154,7 @@ const profile = () => {
                 </Text>
               </Center>
             </Box>
+            <Text className='parksFont mobilePassport'>{username}'s Passport</Text>
             <ParkCount data={axiosPassport} />
             <Button
               bg="1"

@@ -117,8 +117,7 @@
   and (max-device-width: 480px)
   and (-webkit-min-device-pixel-ratio: 2) {
     .passportSign {
-        clip-path: none;
-        width: 300px
+        width: 100%;
      }
      .passportTitle {
          font-size: 20px !important;

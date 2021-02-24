@@ -29,7 +29,7 @@ const Passport = ({ data, user }) => {
       allParkCount += 1;
       if (data.designation === "National Park" || data.designation === "National Park & Preserve" ) {
         parkCount += 1;
-        console.log("park is counting", parkCount);
+        
       }
       setTimeout(() => {
         setLoading(false);
@@ -105,7 +105,6 @@ const Passport = ({ data, user }) => {
                     )
                     .then((data) => {
                       let visitedId = data.data.data.id;
-                      console.log("visitedID", visitedId);
                       //another axios call to post person_park connection
                       axios
                         .post(
@@ -115,10 +114,7 @@ const Passport = ({ data, user }) => {
                           { withCredentials: true }
                         )
                         .then((data) => {
-                          console.log(
-                            "person park data was deleted:",
-                            data.data.data
-                          );
+                       
                         })
                         .catch((err) => {
                           console.log("error with person park", err);

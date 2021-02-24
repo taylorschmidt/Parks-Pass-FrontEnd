@@ -30,7 +30,6 @@ const park_info = () => {
       )
       .then((data) => {
         let parkDataAPI = data.data.data;
-        console.log("from NPAPI", parkDataAPI);
         if (parkDataAPI.length === 0) {
           router.push("/search_parks");
           return;
@@ -39,7 +38,7 @@ const park_info = () => {
           parkData.push(parkDataAPI);
           loopParkData();
           setLoading(true);
-          console.log(parkData);
+        
         }, 2000);
       })
       .catch((err) => {
@@ -52,7 +51,7 @@ const park_info = () => {
       return;
     } else if (parkData.length > 0) {
       let imagesArray = parkData[0][0].images;
-      console.log(imagesArray);
+    
       imagesArray.forEach((image) => {
         images.push(image.url);
       });
@@ -60,7 +59,7 @@ const park_info = () => {
   };
 
   const addToPassport = () => {
-    console.log(query.code);
+    
     // axios call to get user data
     axios
       .get(process.env.NEXT_PUBLIC_BACKEND_URL + `/api/v1/user/`, { withCredentials: true })
@@ -83,7 +82,7 @@ const park_info = () => {
                 { withCredentials: true }
               )
               .then((data) => {
-                console.log("person park data:", data.data.data);
+              
                 router.push("/profile");
               })
               .catch((err) => {

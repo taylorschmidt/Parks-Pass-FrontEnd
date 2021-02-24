@@ -28,11 +28,11 @@ const campground_info = () => {
           )
           .then((data) => {
             let campDataAPI = data.data.data;
-            console.log("from NPAPI", campDataAPI);
+            
             setTimeout(() => {
               campData.push(campDataAPI);
               setLoading(true);
-              console.log(campData);
+            
               // display()
             }, 2000);
           })

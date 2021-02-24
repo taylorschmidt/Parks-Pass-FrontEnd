@@ -37,7 +37,6 @@ const SignUpForm = () => {
             password: password
             }, { withCredentials: true }
         ).then((data)=>{
-            console.log(data.data)
             if (data.data.status.code === 401) {
                 setRepeatUser(true)
             }

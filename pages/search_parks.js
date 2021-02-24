@@ -38,7 +38,6 @@ const search_parks = () => {
         `https://developer.nps.gov/api/v1/parks?q=${searchTerm}&api_key=W9tvHVJFdf5z1OJ2J1rpSj8Ngc0Z7BfqhjfAVFgz`
       )
       .then((data) => {
-        console.log(data.data.data);
         setSearchResult(data.data.data);
         setSearchedPark(true);
       })
@@ -53,7 +52,6 @@ const search_parks = () => {
         `https://developer.nps.gov/api/v1/parks?parkCode=acad,zion,romo,glac,grca,arch&api_key=W9tvHVJFdf5z1OJ2J1rpSj8Ngc0Z7BfqhjfAVFgz`
       )
       .then((data) => {
-        console.log("popular parks from API", data.data.data);
         setPopResult(data.data.data);
         popResult.push(data.data.data);
         setLoading(true);

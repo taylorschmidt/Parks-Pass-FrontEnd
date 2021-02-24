@@ -15,7 +15,6 @@ import {
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 
 const ImageSlider = ({ images }) => {
-  console.log(images, "from image slider");
   const [index, setIndex] = useState(0); 
 
   const slideRight = () => {

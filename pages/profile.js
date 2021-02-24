@@ -31,7 +31,6 @@ const profile = () => {
     axios
       .get(process.env.NEXT_PUBLIC_BACKEND_URL + `/api/v1/user/`, { withCredentials: true })
       .then((data) => {
-        console.log("user data", data.data.data[0].email);
         let myEmail = data.data.data[0].email;
         let userId = data.data.data[0].id;
         let myUsername = data.data.data[0].username;
@@ -43,7 +42,6 @@ const profile = () => {
             email: myEmail,
           })
           .then((data) => {
-            console.log("visited parks data", data.data.data);
             passport.push(data.data.data);
             setTimeout(() => {
               axiosPassportFun();
@@ -67,7 +65,6 @@ const profile = () => {
             `https://developer.nps.gov/api/v1/parks?parkCode=${data.park_code}&api_key=W9tvHVJFdf5z1OJ2J1rpSj8Ngc0Z7BfqhjfAVFgz`
           )
           .then((data) => {
-            console.log("visited parks from API", data.data.data);
             let thisPark = data.data.data[0];
             axiosPassport.push(thisPark);
           })
@@ -88,7 +85,6 @@ const profile = () => {
         withCredentials: true,
       })
       .then((data) => {
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);

@@ -27,7 +27,6 @@ import {
             email: email,
           }, { withCredentials: true })
         .then((data) => {
-            console.log('from backend', data)
             window.location.replace("/profile");
         }).catch(err=>console.log(err))
     };

@@ -15,10 +15,8 @@ import {
   
   const Preview = ({ data }) => {
     const router = useRouter();
-    console.log(data);
     const display = () => {
       return data.map((data, index) => {
-        console.log(data);
         return (
           <>
             <Box

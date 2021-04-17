@@ -1,14 +1,8 @@
 import { useEffect, useState } from "react";
 import {
-  Flex,
-  Stack,
-  useColorMode,
-  IconButton,
   Box,
   Button,
   Image,
-  Spacer,
-  Center,
   HStack,
   VStack,
 } from "@chakra-ui/react";

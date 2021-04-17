@@ -1,13 +1,7 @@
 import React from "react";
 import {
   Box,
-  Container,
   useColorMode,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
   Image,
   Button,
   Center,
@@ -22,47 +16,43 @@ const Home = () => {
   const router = useRouter();
   return (
     <>
-    <div>
-    <Box w="100%" m="" d="flex" flexWrap="wrap">
-          
-            
-              <Box className="left-index" width="40%">
-                  <Center>
-                <Image className="left-img"
-                  src="https://i.imgur.com/ne3muOR.png"
-                ></Image>
-                </Center>
-              </Box>
-              <Box width="45%" mt={49} className="right-div right-index">
-                  <Center>
-                <VStack>
-                  <Text className="parksFont" textAlign="center" fontSize="5xl">
-                    Welcome to Parks Passport!
-                  </Text>
-
-                  <Text className="right-index" w="70%" textAlign="center">
-                    Parks Passport is here to make national park trip planning
-                    easy! View general and campsite information about your
-                    favorite locations and sign up to keep a passport of your
-                    visited parks.
-                  </Text>
-
-                  <Button
-                    bg="1"
-                    _hover={{ background: "2" }}
-                    color="white"
-                    onClick={() => {
-                      router.push("/form");
-                    }}
-                  >
-                    Join Us
-                  </Button>
-                </VStack>
-                </Center>
-              </Box>
-     
+      <div>
+        <Box w="100%" m="" d="flex" flexWrap="wrap">
+          <Box className="left-index" width="40%">
+            <Center>
+              <Image
+                className="left-img"
+                src="https://i.imgur.com/ne3muOR.png"
+              ></Image>
+            </Center>
           </Box>
-          </div>
+          <Box width="45%" mt={49} className="right-div right-index">
+            <Center>
+              <VStack>
+                <Text className="parksFont" textAlign="center" fontSize="5xl">
+                  Welcome to Parks Passport!
+                </Text>
+                <Text className="right-index" w="70%" textAlign="center">
+                  Parks Passport is here to make national park trip planning
+                  easy! View general and campsite information about your
+                  favorite locations and sign up to keep a passport of your
+                  visited parks.
+                </Text>
+                <Button
+                  bg="1"
+                  _hover={{ background: "2" }}
+                  color="white"
+                  onClick={() => {
+                    router.push("/form");
+                  }}
+                >
+                  Join Us
+                </Button>
+              </VStack>
+            </Center>
+          </Box>
+        </Box>
+      </div>
     </>
   );
 };

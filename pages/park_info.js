@@ -30,6 +30,7 @@ const park_info = () => {
       )
       .then((data) => {
         let parkDataAPI = data.data.data;
+        //if NPS API doesn't properly give data, just return to the search page
         if (parkDataAPI.length === 0) {
           router.push("/search_parks");
           return;
@@ -38,11 +39,10 @@ const park_info = () => {
           parkData.push(parkDataAPI);
           loopParkData();
           setLoading(true);
-        
         }, 2000);
       })
       .catch((err) => {
-        console.log("Error connecting to NP API:", err);
+        console.log("Error connecting to NPS API:", err);
       });
   };
 
@@ -59,7 +59,6 @@ const park_info = () => {
   };
 
   const addToPassport = () => {
-    
     // axios call to get user data
     axios
       .get(process.env.NEXT_PUBLIC_BACKEND_URL + `/api/v1/user/`, { withCredentials: true })
@@ -82,7 +81,6 @@ const park_info = () => {
                 { withCredentials: true }
               )
               .then((data) => {
-              
                 router.push("/profile");
               })
               .catch((err) => {
